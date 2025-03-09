@@ -16,7 +16,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
   return (
     <form onSubmit={handleSubmit}>
       <input
-        type="id"
+        type="text"
         placeholder="아이디"
         value={id}
         onChange={(e) => setId(e.target.value)}

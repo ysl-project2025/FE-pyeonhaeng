@@ -1,0 +1,272 @@
+/* *************************************************
+*                     공통 클래스                     *
+****************************************************/
+.dn {
+  display: none;
+}
+.ir {
+  position: absolute;
+  clip: rect(0 0 0 0);
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+}
+
+.abs {
+  position: absolute;
+}
+.rel {
+  position: relative;
+}
+.abs_c {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.full{
+	width: 100%;
+	height: 100%;
+}
+.fullImg_v img{
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+.fullImg_t img{
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
+}
+
+.talc{ text-align: center; }
+
+.borderTop{ border-top: var(--border); }
+.borderBot{ border-bottom: var(--border); }
+.line_t{border-top: 1px solid var(--thumb);}
+.line_b{border-bottom: 1px solid var(--thumb);}
+
+/* 플렉스 */
+.fl{display: flex;}
+.fl.jc{justify-content: center;}
+.fl.jb{justify-content: space-between;}
+.fl.js{justify-content: flex-start;}
+.fl.je{justify-content: flex-end;}
+.fl.alc{align-items: center;}
+.fl.als{align-items: flex-start;}
+.fl.ale{align-items: flex-end;}
+.fl.nowr{flex-wrap: nowrap;}
+.fl.dir{flex-direction: row;}
+.fl.dic{flex-direction: column;}
+.fl.fl1{flex: 1;}
+
+.gap2_t{margin-top: 2rem;}
+.gap3_t{margin-top: 3rem;}
+.gap4_t{margin-top: 4rem;}
+.gap2_b{margin-bottom: 2rem;}
+.gap3_b{margin-bottom: 3rem;}
+.gap4_b{margin-bottom: 4rem;}
+
+.mr1{ margin-right: 1rem; }
+.ml1{ margin-left: 1rem; }
+.mt1{ margin-top: 1rem; }
+.mb1{ margin-bottom: 1rem; }
+.mcX{
+	margin-left: auto;
+	margin-right: auto;
+}
+
+/* 필수 */
+.required{
+  position: relative;
+}
+.required::after{
+  content: "";
+  display: inline-block;
+  width: 0.4rem;
+  height: 0.4rem;
+  margin-left: 0.2rem;
+  vertical-align: top;
+  border-radius: 100%;
+  background: var(--orange);
+}
+
+/* 구분선 */
+.divid > *:not(:first-child),
+.divid.thisBtn{
+  position: relative;
+  margin-left: 2rem;
+}
+.divid > *:not(:first-child)::after,
+.divid.thisBtn::after{
+  content: "";
+  position: absolute;
+  left: -1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1px;
+  height: 1.6rem;
+  background: var(--gray);
+}
+
+/* *************************************************
+*                      CONTENT                     *
+****************************************************/
+/* 컨텐츠 공통 사이즈 잡아주기 */
+.inner {
+  position: relative;
+  width: 100%;
+  /* max-width: 1500px; */
+  margin: 0 auto;
+}
+
+/* 컨텐츠 공통 제목 영역 잡아주기 */
+h2.headline {
+  font-size: 2.4rem;
+  font-weight: 700;
+}
+
+/* *************************************************
+*              INPUT CHECK BOX & RADIO             *
+****************************************************/
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="number"]{
+  border: var(--border);
+  border-radius: 0.3rem;
+  padding: 1rem 2rem;
+}
+.chk_box {
+  display: inline-block;
+  position: relative;
+  line-height: 1.8rem;
+}
+
+.chk_box label {
+  display: inline-block;
+  padding-left: 2.4rem;
+}
+
+.chk_box input[type="checkbox"] {
+  position: absolute;
+  top: 0.4rem;
+  left: 0;
+}
+
+.chk_box label:before {
+  content: "";
+  position: absolute;
+  top: 0.4rem;
+  left: 0;
+  width: 1.8rem;
+  height: 1.8rem;
+  background: url(../images/ic_chk.png) no-repeat 0 0;
+}
+
+.chk_box input[type="checkbox"]:checked + label:before {
+  background: url(../images/ic_chk_on.png) no-repeat 0 0;
+}
+
+/* *************************************************
+*                      SCROLL                      *
+****************************************************/
+/* scroll design */
+/* ::-webkit-scrollbar {
+    width: 0.3rem;
+		height: 0.3rem;
+}
+::-webkit-scrollbar-thumb {
+    background-color: #dbdbdb;
+}
+::-webkit-scrollbar-track {
+    background-color: #fff;
+} */
+
+/* .scrollCustom::-webkit-scrollbar {
+    width: 0.3rem;
+}
+.scrollCustom::-webkit-scrollbar-thumb {
+    background-color: #dbdbdb;
+}
+.scrollCustom::-webkit-scrollbar-track {
+    background-color: #fff;
+} */
+
+/* *************************************************
+*                       말줄임                       *
+****************************************************/
+.txt_over_1,
+.txt_over_2,
+.txt_over_3,
+.txt_over_4 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+}
+
+.txt_over_1 {
+  -webkit-line-clamp: 1;
+}
+.txt_over_2 {
+  -webkit-line-clamp: 2;
+}
+.txt_over_3 {
+  -webkit-line-clamp: 3;
+}
+.txt_over_4 {
+  -webkit-line-clamp: 4;
+}
+
+/* *************************************************
+*                      Z INDEX                     *
+****************************************************/
+.z-0 {
+  z-index: 0;
+}
+.z-10 {
+  z-index: 10;
+}
+.z-20 {
+  z-index: 20;
+}
+.z-30 {
+  z-index: 30;
+}
+.z-40 {
+  z-index: 40;
+}
+.z-50 {
+  z-index: 50;
+}
+.z-999 {
+  z-index: 999;
+}
+
+/* *************************************************
+*                       반응형                       *
+****************************************************/
+/* .mo,
+.tablet,
+.tablet_only {
+  display: none;
+}
+
+@media (max-width: 1024px) {
+  .tablet,
+  .tablet_only {
+    display: block;
+  }
+}
+
+@media (max-width: 767px) {
+  .mo {
+    display: block;
+  }
+  .tablet_only {
+    display: none;
+  }
+} */
