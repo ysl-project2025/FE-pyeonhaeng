@@ -1,12 +1,21 @@
 import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import LoginPage from './pages/member/member.login';
+import JoinPage from './pages/member/member.join';
+import './styles/reset.css';
+import './styles/common.css';
 import { Provider } from 'react-redux';
 import store from './store';
-import Login from './pages/member/member.login.tsx';
 
 const App = () => {
   return (
     <Provider store={store}>
-      <Login />
+      <Router>
+        <Routes>
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/join" element={<JoinPage />} />
+        </Routes>
+      </Router>
     </Provider>
   );
 };

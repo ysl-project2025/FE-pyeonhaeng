@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { loginSuccess, logout } from '../../store/slices/login.slice';
+import { loginSuccess } from '../../store/slices/login.slice';
 
 const useLogin = () => {
   const dispatch = useDispatch();
@@ -25,25 +25,31 @@ const useLogin = () => {
     }
   };
 
-  const checkUserStatus = async () => {
+  const join = async (
+    user_id: string,
+    user_password: string,
+    user_name: string,
+  ) => {
     try {
-      const response = await fetch('/api/auth-status', {
+      const response = await fetch('/member/join', {
         // 이부분 API에 맞게 수정 필요
-        method: 'GET',
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ user_id, user_password, user_name }),
         credentials: 'include', // ✅ 서버에서 JWT 쿠키 확인 요청을 위해 필요요
       });
 
       if (response.ok) {
-        dispatch(loginSuccess());
+        console.log(response);
       } else {
-        dispatch(logout());
+        console.error(response);
       }
-    } catch {
-      dispatch(logout());
+    } catch (error) {
+      console.error('회원가입 오류:', error);
     }
   };
 
-  return { login, checkUserStatus };
+  return { login, join };
 };
 
 export default useLogin;

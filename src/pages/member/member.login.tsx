@@ -1,13 +1,8 @@
-import React, { useEffect } from 'react';
 import LoginForm from '../../components/member/member.login';
-import uselogin from '../../hooks/member/member.uselogin';
+import uselogin from '../../hooks/member/member.usemember';
 
 const Login = () => {
-  const { login, checkUserStatus } = uselogin();
-
-  useEffect(() => {
-    checkUserStatus(); // 페이지 로드 시 로그인 상태 확인
-  }, []);
+  const { login } = uselogin();
 
   return (
     <div>

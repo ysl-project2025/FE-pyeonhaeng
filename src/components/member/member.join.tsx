@@ -1,22 +1,17 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 
-interface LoginFormProps {
-  onLogin: (id: string, password: string) => void;
+interface JoinFormProps {
+  onJoin: (id: string, password: string, name: string) => void;
 }
 
-const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
+const LoginForm: React.FC<JoinFormProps> = ({ onJoin }) => {
   const [id, setId] = useState('');
   const [password, setPassword] = useState('');
-  const navigate = useNavigate();
+  const [name, setName] = useState('');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onLogin(id, password);
-  };
-  const handleSignup = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    navigate('/join');
+    onJoin(id, password, name);
   };
 
   return (
@@ -33,10 +28,13 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
-      <button type="submit">로그인</button>
-      <button type="button" onClick={handleSignup}>
-        회원가입
-      </button>
+      <input
+        type="text"
+        placeholder="닉네임"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+      />
+      <button type="submit">확인</button>
     </form>
   );
 };
