@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import LoginForm from '../components/login.component';
-import uselogin from '../hooks/uselogin';
+import LoginForm from '../../components/member/member.login';
+import uselogin from '../../hooks/member/member.uselogin';
 
 const Login = () => {
   const { login, checkUserStatus } = uselogin();

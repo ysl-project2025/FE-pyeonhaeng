@@ -1,21 +1,22 @@
 import { useDispatch } from 'react-redux';
-import { loginSuccess, logout } from '../store/slices/login.slice';
+import { loginSuccess, logout } from '../../store/slices/login.slice';
 
 const useLogin = () => {
   const dispatch = useDispatch();
 
-  const login = async (id: string, password: string) => {
+  const login = async (user_id: string, user_password: string) => {
     try {
-      const response = await fetch('/api/login', {
-        // 이부분 API에 맞게 수정 필요
+      const response = await fetch('/member/login', {
+        // base URL은 .env 파일에 설정해두고, 이부분 API에 맞게 수정 필요
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ id, password }),
+        body: JSON.stringify({ user_id, user_password }),
         credentials: 'include', // httpOnly Cookie 사용을 위해
       });
 
       if (response.ok) {
         dispatch(loginSuccess());
+        console.log('로그인 성공');
       } else {
         console.error('로그인 실패');
       }

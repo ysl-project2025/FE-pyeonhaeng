@@ -1,7 +1,7 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import store from './store';
-import Login from './pages/login.page.tsx';
+import Login from './pages/member/member.login.tsx';
 
 const App = () => {
   return (
