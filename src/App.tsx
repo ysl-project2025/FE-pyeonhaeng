@@ -1,8 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import LoginPage from './pages/member/member.login';
 import JoinPage from './pages/member/member.join';
-import './styles/reset.css';
-import './styles/common.css';
 import { Provider } from 'react-redux';
 import store from './store';
 
