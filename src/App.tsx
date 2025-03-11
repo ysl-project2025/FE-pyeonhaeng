@@ -3,10 +3,13 @@ import LoginPage from './pages/member/member.login';
 import JoinPage from './pages/member/member.join';
 import { Provider } from 'react-redux';
 import store from './store';
+import { Global } from "@emotion/react";
+import { globalStyles } from './styles/common.css';
 
 const App = () => {
   return (
     <Provider store={store}>
+      <Global styles={globalStyles} />
       <Router>
         <Routes>
           <Route path="/login" element={<LoginPage />} />

@@ -48,3 +48,64 @@ export default tseslint.config({
   },
 });
 ```
+
+
+📂 src
+ ├── 📂 assets 
+ │    
+ ├── 📂 components  # UI 컴포넌츠
+ │    ├── 📂 common
+ │    │    ├── Footer.tsx
+ │    │    ├── Header.tsx
+ │    │    ├── CommonLayout.tsx
+ │    │    ├── Layout.css.ts
+ │    ├── 📂 member
+ │    │    ├── MemberJoin.tsx
+ │    │    ├── MemberLogin.tsx
+ │    │    ├── Member.css.ts
+ │    ├── 📂 product
+ │    │    ├── ProductList.tsx
+ │    │    ├── ProductDetail.tsx
+ │    │    ├── Product.css.ts
+ │    ├── 📂 recipe
+ │    │    ├── RecipeList.tsx
+ │    │    ├── RecipeDetail.tsx
+ │    │    ├── Recipe.css.ts
+ │    ├── index.tsx
+ │    
+ ├── 📂 constants
+ │    ├── constants.ts
+ │
+ ├── 📂 hooks
+ │    ├── 📂 product
+ │    │    ├── useProduct.ts ✅ 상품 관련 로직
+ │    ├── 📂 recipe
+ │    │    ├── useRecipe.ts ✅ 레시피 관련 로직
+ │    
+ ├── 📂 pages 
+ │    ├── 📂 product ✅ 상품 페이지
+ │    │    ├── ProductListPage.tsx 
+ │    │    ├── ProductDetailPage.tsx
+ │    ├── 📂 recipe ✅ 레시피 페이지
+ │    │    ├── RecipeListPage.tsx
+ │    │    ├── RecipeDetailPage.tsx
+ │    ├── EventPage.tsx
+ │    ├── IndexPage.tsx
+ │    
+ ├── 📂 store 
+ │    ├── 📂 features
+ │    │    ├── authSlice.ts
+ │    ├── store.ts
+ │    
+ ├── 📂 styles  
+ │    ├── globalStyles.css.ts
+ │    ├── theme.css.ts
+ │    ├── reset.css.ts
+ │    ├── common.css.ts
+ │
+ ├── 📂 types 
+ │    ├── types.ts
+ │
+ ├── App.tsx
+ ├── main.tsx
+ ├── vite-env.d.ts
