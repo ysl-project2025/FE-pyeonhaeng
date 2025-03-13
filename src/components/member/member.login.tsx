@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { PATHS } from '../../constants/constants';
 
 interface LoginFormProps {
   onLogin: (id: string, password: string) => void;
@@ -16,7 +17,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
   };
   const handleSignup = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    navigate('/join');
+    navigate(PATHS.join);
   };
 
   return (
