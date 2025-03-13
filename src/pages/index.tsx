@@ -1,0 +1,40 @@
+// pages/index.tsx
+import React, { useState } from 'react';
+import Header from '../components/common/main.header';
+import ProductPage from '../components/product/products.list';
+
+const MainPage: React.FC = () => {
+  // 검색어와 정렬 상태를 여기서 관리
+  const [searchKeyword, setSearchKeyword] = useState('');
+  const [sortType, setSortType] = useState('review');
+
+  // 햄버거 버튼 클릭 시 사이드바 열기/닫기 등의 로직
+  const handleHamburgerClick = () => {
+    console.log('햄버거 버튼 클릭 -> 사이드바 열기/닫기');
+  };
+
+  // 검색어 업데이트
+  const handleSearch = (keyword: string) => {
+    setSearchKeyword(keyword);
+    console.log(`검색: ${keyword}`);
+  };
+
+  // 정렬 기준 업데이트
+  const handleSortChange = (type: string) => {
+    setSortType(type);
+    console.log(`정렬: ${type}`);
+  };
+
+  return (
+    <div>
+      <Header
+        onHamburgerClick={handleHamburgerClick}
+        onSearch={handleSearch}
+        onSortChange={handleSortChange}
+      />
+      <ProductPage searchKeyword={searchKeyword} sortType={sortType} />
+    </div>
+  );
+};
+
+export default MainPage;
