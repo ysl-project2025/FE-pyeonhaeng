@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import LoginPage from './pages/member/member.login';
-import JoinPage from './pages/member/member.join';
-import MainPage from './pages/index';
+import LoginPage from './pages/member/LoginPage';
+import JoinPage from './pages/member/JoinPage';
+import MainPage from './pages/IndexPage';
 import { Provider } from 'react-redux';
 import store from './store';
 import { PATHS } from './constants/constants';
