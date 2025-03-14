@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import ProductCard from './product.card';
+import ProductCard from './ProductCard';
 import { AllProduct, ProductApiResponse } from '../../types/product';
 
 interface ProductPageProps {

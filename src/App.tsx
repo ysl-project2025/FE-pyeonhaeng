@@ -11,7 +11,7 @@ const App = () => {
     <Provider store={store}>
       <Router>
         <Routes>
-          <Route path="/" element={<MainPage />} />
+          <Route path={PATHS.main} element={<MainPage />} />
           <Route path={PATHS.login} element={<LoginPage />} />
           <Route path={PATHS.join} element={<JoinPage />} />
         </Routes>

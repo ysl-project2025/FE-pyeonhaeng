@@ -1,7 +1,7 @@
 // pages/index.tsx
 import React, { useState } from 'react';
-import Header from '../components/common/main.header';
-import ProductPage from '../components/product/products.list';
+import Header from '../components/common/Header';
+import ProductList from '../components/product/productsList';
 
 const MainPage: React.FC = () => {
   // 검색어와 정렬 상태를 여기서 관리
@@ -32,7 +32,7 @@ const MainPage: React.FC = () => {
         onSearch={handleSearch}
         onSortChange={handleSortChange}
       />
-      <ProductPage searchKeyword={searchKeyword} sortType={sortType} />
+      <ProductList searchKeyword={searchKeyword} sortType={sortType} />
     </div>
   );
 };

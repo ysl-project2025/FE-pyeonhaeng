@@ -1,4 +1,4 @@
-import JoinForm from '../../components/member/member.join';
+import JoinForm from '../../components/member/Join';
 import useJoin from '../../hooks/member/useJoin';
 
 const Login = () => {
