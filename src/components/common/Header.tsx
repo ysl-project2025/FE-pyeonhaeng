@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import styled from "@emotion/styled";
+import menuIcon from "../../assets/icons/menu.png";
+import closeIcon from "../../assets/icons/close.png";
 
 function Header() {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -10,7 +12,7 @@ function Header() {
             <Link to="/">PyeonHaeng</Link>
 
             <MenuIcon
-                src="/assets/menu.png"
+                src={menuIcon}
                 alt="메뉴 열기"
                 onClick={() => setIsSidebarOpen(true)}
             />
@@ -18,7 +20,7 @@ function Header() {
             {isSidebarOpen && (
                 <Sidebar>
                     <CloseIcon
-                        src="/assets/close.png"
+                        src={closeIcon}
                         alt="닫기"
                         onClick={() => setIsSidebarOpen(false)}
                     />
