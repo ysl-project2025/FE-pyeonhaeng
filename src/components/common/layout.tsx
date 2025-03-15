@@ -1,14 +1,18 @@
-import React from "react";
-import Header from "./header";
-import Footer from "./footer";
+import React, { ReactNode } from "react";
+import Header from "./Header";
+import Footer from "./Footer";
 
-const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+interface LayoutProps {
+  children?: ReactNode; // children을 선택적(?)으로 변경
+}
+
+const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
-    <>
+    <header>
       <Header />
-        <main>{children}</main>
+      <main>{children || ""}</main>
       <Footer />
-    </>
+    </header>
   );
 };
 
