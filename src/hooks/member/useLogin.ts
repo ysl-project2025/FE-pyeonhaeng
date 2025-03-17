@@ -1,20 +1,29 @@
 import { useDispatch } from 'react-redux';
 import { loginSuccess } from '../../store/slices/login.slice';
+import axios from 'axios';
+
+const url = import.meta.env.VITE_API_BASE_URL;
 
 const useLogin = () => {
   const dispatch = useDispatch();
 
   const login = async (userId: string, userPassword: string) => {
     try {
-      const response = await fetch('/member/login', {
-        // base URL은 .env 파일에 설정해두고, 이부분 API에 맞게 수정 필요
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ user_id: userId, user_password: userPassword }),
-        credentials: 'include', // httpOnly Cookie 사용을 위해
-      });
+      const response = await axios.post(
+        `${url}/member/login`,
+        {
+          user_id: userId,
+          user_password: userPassword,
+        },
+        {
+          withCredentials: true, // ✅ httpOnly Cookie 사용을 위해 필요
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        },
+      );
 
-      if (response.ok) {
+      if (response.status === 200) {
         dispatch(loginSuccess());
         console.log('로그인 성공');
       } else {

@@ -1,4 +1,3 @@
-// types/product.ts
 export interface AllProduct {
   productId: number;
   name: string;
@@ -6,7 +5,18 @@ export interface AllProduct {
   description: string;
 }
 
-// API 응답 전체를 표현할 수 있는 타입 (필요시)
 export interface ProductApiResponse {
   data: AllProduct[];
 }
+
+export type Product = {
+  product_id: number;
+  name: string;
+  price: number;
+  description: string;
+  created_at?: string;
+};
+
+export type ProductDetailResponse = {
+  data: Product;
+};

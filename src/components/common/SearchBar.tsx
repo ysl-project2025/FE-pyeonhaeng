@@ -1,31 +1,39 @@
-// components/SearchBar.tsx
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 interface SearchBarProps {
-  value: string;
+  value?: string; // value를 선택적(optional)으로 설정
   onChange: (value: string) => void;
-  onSearch: (keyword: string) => void; // ✅ () => void ❌ → (keyword: string) => void ✅
+  onSearch: (keyword: string) => void;
 }
 
-const SearchBar: React.FC<SearchBarProps> = ({ value, onChange, onSearch }) => {
+const SearchBar: React.FC<SearchBarProps> = ({ value = '', onSearch }) => {
+  const [inputValue, setInputValue] = useState(value);
+
+  useEffect(() => {
+    setInputValue(value); // 부모 컴포넌트의 value 변경 시 동기화
+  }, [value]);
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    onChange(e.target.value);
+    setInputValue(e.target.value); // 로컬 상태만 변경
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
-      onSearch(value); // ✅ keyword를 전달해야 함
+      onSearch(inputValue);
     }
   };
 
   return (
-    <input
-      type="text"
-      placeholder="Search bar"
-      value={value}
-      onChange={handleChange}
-      onKeyDown={handleKeyDown}
-    />
+    <div>
+      <input
+        type="text"
+        placeholder="상품 ID 입력"
+        value={inputValue}
+        onChange={handleChange}
+        onKeyDown={handleKeyDown}
+      />
+      <button onClick={() => onSearch(inputValue)}>검색</button>
+    </div>
   );
 };
 

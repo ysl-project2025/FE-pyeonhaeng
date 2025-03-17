@@ -1,7 +1,8 @@
 // pages/index.tsx
 import React, { useState } from 'react';
-import Header from '../components/common/Header';
-import ProductList from '../components/product/productsList';
+import Header from '../components/common/Header2';
+import ProductList from '../components/product/ProductsList';
+import SearchBar from '../components/common/SearchBar';
 
 const MainPage: React.FC = () => {
   // 검색어와 정렬 상태를 여기서 관리
@@ -16,7 +17,6 @@ const MainPage: React.FC = () => {
   // 검색어 업데이트
   const handleSearch = (keyword: string) => {
     setSearchKeyword(keyword);
-    console.log(`검색: ${keyword}`);
   };
 
   // 정렬 기준 업데이트
@@ -29,8 +29,12 @@ const MainPage: React.FC = () => {
     <div>
       <Header
         onHamburgerClick={handleHamburgerClick}
-        onSearch={handleSearch}
         onSortChange={handleSortChange}
+      />
+      <SearchBar
+        value={searchKeyword}
+        onChange={setSearchKeyword}
+        onSearch={handleSearch}
       />
       <ProductList searchKeyword={searchKeyword} sortType={sortType} />
     </div>

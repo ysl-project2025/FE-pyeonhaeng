@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import ProductCard from './ProductCard';
 import { AllProduct, ProductApiResponse } from '../../types/product';
+const url = import.meta.env.VITE_BASE_URL;
 
 interface ProductPageProps {
   searchKeyword?: string; // 검색 키워드를 상위에서 받아올 수도 있음
@@ -15,15 +16,13 @@ const ProductPage: React.FC<ProductPageProps> = ({
   const [products, setProducts] = useState<AllProduct[]>([]);
 
   useEffect(() => {
-    // API를 호출해서 상품 목록을 가져옵니다.
     const fetchProducts = async () => {
       try {
-        const response = await axios.get<ProductApiResponse>(
-          'https://example.com/api/products',
-        );
-        setProducts(response.data.data);
+        const response = await axios.get<ProductApiResponse>(`${url}/product`);
+        setProducts(response.data.data || []);
       } catch (error) {
         console.error('상품 데이터를 불러오는 중 오류 발생:', error);
+        setProducts([]);
       }
     };
 
