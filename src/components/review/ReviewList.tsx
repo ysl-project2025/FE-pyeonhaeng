@@ -1,6 +1,12 @@
 import React from 'react';
 import ReviewCard from './ReviewCard';
-import Review from '../../types/review';
+
+interface Review {
+  id: number;
+  title: string;
+  rating: number;
+  date: string;
+}
 
 interface ReviewListProps {
   reviews: Review[];

@@ -1,21 +1,52 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import useProductDetail from '../hooks/product/useProductDetail'; // ✅ 수정된 훅 사용
-import ImageViewer from '../components/common/ImageViewer';
-import ProductDetail from '../components/product/ProductDetail';
-import ReviewWriteButton from '../components/review/ReviewWriteButton'; // ✅ 추가된 리뷰 작성 버튼
-import ReviewList from '../components/review/ReviewList'; // ✅ 추가된 리뷰 목록
-import MoreButton from '../components/common/MoreButton'; // ✅ 추가된 더보기 버튼
-import Review from '../types/review';
-const mockReviews: Review[] = [
-  { id: 1, title: '좋은 상품!', rating: 5, date: '2024-03-18' },
-  { id: 2, title: '괜찮아요', rating: 4, date: '2024-03-17' },
-  { id: 3, title: '별로였어요', rating: 2, date: '2024-03-16' },
-];
+import axios from 'axios';
+import ImageViewer from '../components/common/Imageviewer';
+import ProductDetail from '../components/product/Productdetail';
+import ReviewWriteButton from '../components/review/ReviewWriteButton';
+import ReviewList from '../components/review/ReviewList';
+import MoreButton from '../components/common/MoreButton';
+
+interface Review {
+  id: number;
+  title: string;
+  rating: number;
+  date: string;
+}
+
+interface Product {
+  imageUrl: string;
+  productName: string;
+  productPrice: number;
+  reviews: Review[];
+}
 
 const ProductDetailPage: React.FC = () => {
   const { productId } = useParams<{ productId: string }>();
-  const { product, loading, error } = useProductDetail(productId);
+  const [product, setProduct] = useState<Product | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchProduct = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+
+        const response = await axios.get(
+          `https://your-api.com/products/${productId}`,
+        );
+        setProduct(response.data);
+      } catch (err) {
+        setError('상품 정보를 불러오는 데 실패했습니다.');
+        console.error('상품 데이터를 불러오는 중 오류 발생:', err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProduct();
+  }, [productId]);
 
   if (loading) return <p>상품 정보를 불러오는 중...</p>;
   if (error) return <p>{error}</p>;
@@ -23,23 +54,22 @@ const ProductDetailPage: React.FC = () => {
 
   return (
     <div>
-      {/* ✅ 이미지 뷰어 & 상품 정보 */}
+      {/* 이미지 뷰어 & 상품 정보 */}
       <div>
-        <ImageViewer src={product.productUrl} alt={product.name} /> =
+        <ImageViewer src={product.imageUrl} alt={product.productName} />
         <ProductDetail
-          productId={product.productId} // ✅ 숫자를 문자열로 변환하여 전달
-          name={product.name}
-          price={product.price}
+          name={product.productName}
+          price={product.productPrice}
         />
       </div>
 
-      {/* ✅ 리뷰 작성 버튼 */}
+      {/* 리뷰 작성 버튼 */}
       <ReviewWriteButton onClick={() => console.log('리뷰 작성 모달 열기!')} />
 
-      {/* ✅ 리뷰 목록 */}
-      <ReviewList reviews={mockReviews} />
+      {/* 리뷰 목록 */}
+      <ReviewList reviews={product.reviews} />
 
-      {/* ✅ 더보기 버튼 */}
+      {/* 더보기 버튼 */}
       <MoreButton onClick={() => console.log('더 많은 리뷰 불러오기!')} />
     </div>
   );
