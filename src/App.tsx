@@ -4,11 +4,14 @@ import JoinPage from './pages/member/JoinPage';
 import MainPage from './pages/IndexPage';
 import { Provider } from 'react-redux';
 import store from './store';
+import { Global } from '@emotion/react';
+import { globalStyles } from './styles/common.css';
 import { PATHS } from './constants/constants';
 
 const App = () => {
   return (
     <Provider store={store}>
+      <Global styles={globalStyles} />
       <Router>
         <Routes>
           <Route path={PATHS.main} element={<MainPage />} />
