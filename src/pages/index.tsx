@@ -1,9 +1,7 @@
 import Layout from '../components/common/Layout';
 
 const MainPage = () => {
-  return (
-    <Layout />
-  );
+  return <Layout />;
 };
 
 export default MainPage;

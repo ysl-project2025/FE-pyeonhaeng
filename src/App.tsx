@@ -1,11 +1,12 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import LoginPage from './pages/member/member.login';
-import JoinPage from './pages/member/member.join';
-import MainPage from './pages/index';
+import LoginPage from './pages/member/LoginPage';
+import JoinPage from './pages/member/JoinPage';
+import MainPage from './pages/IndexPage';
 import { Provider } from 'react-redux';
 import store from './store';
-import { Global } from "@emotion/react";
+import { Global } from '@emotion/react';
 import { globalStyles } from './styles/common.css';
+import { PATHS } from './constants/constants';
 
 const App = () => {
   return (
@@ -13,9 +14,9 @@ const App = () => {
       <Global styles={globalStyles} />
       <Router>
         <Routes>
-          <Route path="/" element={<MainPage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/join" element={<JoinPage />} />
+          <Route path={PATHS.main} element={<MainPage />} />
+          <Route path={PATHS.login} element={<LoginPage />} />
+          <Route path={PATHS.join} element={<JoinPage />} />
         </Routes>
       </Router>
     </Provider>

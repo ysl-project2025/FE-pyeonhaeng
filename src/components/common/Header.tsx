@@ -1,47 +1,47 @@
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
-import styled from "@emotion/styled";
-import menuIcon from "../../assets/icons/menu.png";
-import closeIcon from "../../assets/icons/close.png";
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import styled from '@emotion/styled';
+import menuIcon from '../../assets/icons/menu.png';
+import closeIcon from '../../assets/icons/close.png';
 
 function Header() {
-    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
-    return (
-        <>
-            <Link to="/">PyeonHaeng</Link>
+  return (
+    <>
+      <Link to="/">PyeonHaeng</Link>
 
-            <MenuIcon
-                src={menuIcon}
-                alt="메뉴 열기"
-                onClick={() => setIsSidebarOpen(true)}
-            />
+      <MenuIcon
+        src={menuIcon}
+        alt="메뉴 열기"
+        onClick={() => setIsSidebarOpen(true)}
+      />
 
-            {isSidebarOpen && (
-                <Sidebar>
-                    <CloseIcon
-                        src={closeIcon}
-                        alt="닫기"
-                        onClick={() => setIsSidebarOpen(false)}
-                    />
-                    <ul>
-                        <li>
-                            <Link to="/">Home</Link>
-                        </li>
-                        <li>
-                            <Link to="/login">Login</Link>
-                        </li>
-                        <li>
-                            <Link to="/join">Join</Link>
-                        </li>
-                    </ul>
-                </Sidebar>
-            )}
-        </>
-    )
+      {isSidebarOpen && (
+        <Sidebar>
+          <CloseIcon
+            src={closeIcon}
+            alt="닫기"
+            onClick={() => setIsSidebarOpen(false)}
+          />
+          <ul>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/login">Login</Link>
+            </li>
+            <li>
+              <Link to="/join">Join</Link>
+            </li>
+          </ul>
+        </Sidebar>
+      )}
+    </>
+  );
 }
 
-export default Header
+export default Header;
 
 const MenuIcon = styled.img`
   width: 32px;
