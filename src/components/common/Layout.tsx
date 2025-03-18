@@ -1,18 +1,17 @@
-import React, { ReactNode } from 'react';
+import React from 'react';
 import Header from './Header';
 import Footer from './Footer';
+import DockBar from './DockBar';
+import { Outlet } from 'react-router-dom';
 
-interface LayoutProps {
-  children?: ReactNode; // children을 선택적(?)으로 변경
-}
-
-const Layout: React.FC<LayoutProps> = ({ children }) => {
+const Layout: React.FC= () => {
   return (
-    <header>
+    <>
       <Header />
-      <main>{children || ''}</main>
+      <main><Outlet /></main>
+      <DockBar />
       <Footer />
-    </header>
+    </>
   );
 };
 

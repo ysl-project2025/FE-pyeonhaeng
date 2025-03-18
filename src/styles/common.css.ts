@@ -1,4 +1,5 @@
 import { css } from '@emotion/react';
+import styled from '@emotion/styled';
 
 export const globalStyles = css`
   input[type='text'],
@@ -7,7 +8,6 @@ export const globalStyles = css`
   input[type='number'],
   input[type='address'],
   input[type='tel'] {
-    /* 'tell'이 아니라 'tel'이 맞음 */
     border: var(--border);
     color: var(--textColor);
     border-radius: var(--radius);
@@ -237,6 +237,16 @@ export const globalStyles = css`
   }
 `;
 
+export const sectionStyle = css`
+  width: 100%;
+  padding-right: 1.5rem;
+  padding-left: 1.5rem;
+`;
+export const Section = styled.div`
+  ${sectionStyle}
+`;
+
+
 const inputWidth = {
   default: '100%',
   small: '32rem',
@@ -296,3 +306,31 @@ export const flex = (
   ...flexDirection[direction],
 });
 // const containerStyle = css`${flex("jb", "ale", "noWrap", "row")}`;
+
+export const flexStyle = css`
+  display: flex;
+`;
+export const jc = css`
+  justify-content: center;
+`;
+export const jb = css`
+  justify-content: space-between;
+`;
+export const js = css`
+  justify-content: flex-start;
+`;
+export const je = css`
+  justify-content: flex-end;
+`;
+export const alc = css`
+  align-items: center;
+`;
+export const als = css`
+  align-items: flex-start;
+`;
+export const ale = css`
+  align-items: flex-end;
+`;
+export const NoWrap = css`
+  flex-wrap: nowrap;
+`;

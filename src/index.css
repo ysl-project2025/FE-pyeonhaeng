@@ -31,20 +31,24 @@
 	--white_20: rgba(255,255,255,.2);
 	--white_10: rgba(255,255,255,.1);
 	
-  --textColor: #232323;
+ 	--textColor: #232323;
 	--border: 1px solid #e5e5e5;
 	--radius: 0.5rem;
-  --inputHeight: 5rem;
+  	--inputHeight: 5rem;
+	--shadow: #eee 1px 0px 6px 1px;
 }
 
 html, body {
 	font-size: 62.5%;
 }
 body {
+	position: relative;
 	width: 100%;
 	max-width: 768px;
-  height: auto;
+  	height: auto;
+	min-height: 100vh;
 	margin: 0 auto;
+	box-shadow: var(--shadow);
 }
 * {
 	font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
