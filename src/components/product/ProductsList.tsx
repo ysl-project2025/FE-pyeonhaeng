@@ -1,7 +1,6 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { useNavigate } from 'react-router-dom'; // ✅ 추가
+import React, { useEffect } from 'react';
 import ProductCard from './ProductCard';
-import useProductList from '../../hooks/product/useProductList';
+import useProductList from '../../hooks/product/useProductList'; // ✅ 새로 만든 훅을 사용
 
 interface ProductPageProps {
   searchKeyword?: string;
@@ -12,19 +11,14 @@ const ProductPage: React.FC<ProductPageProps> = ({
   searchKeyword,
   sortType,
 }) => {
-  const [page, setPage] = useState(1);
-  const { products, loading, error } = useProductList(page);
-  const observerRef = useRef<IntersectionObserver | null>(null);
-  const navigate = useNavigate(); // ✅ 페이지 이동을 위한 useNavigate 훅 추가
+  const { products, loading, error } = useProductList(); // ✅ 상품 목록 불러오기
 
   useEffect(() => {
-    setPage(1);
-  }, [searchKeyword, sortType]);
-
-  const lastElementRef = useCallback(
-    (node: HTMLDivElement | null) => {
-      if (loading) return;
-      if (observerRef.current) observerRef.current.disconnect();
+    if (searchKeyword) {
+      console.log(`검색 키워드: ${searchKeyword}`);
+      // 실제로는 products를 필터링하거나 재호출하는 로직 등을 구현
+    }
+  }, [searchKeyword]);
 
       observerRef.current = new IntersectionObserver(
         (entries) => {
@@ -48,7 +42,10 @@ const ProductPage: React.FC<ProductPageProps> = ({
   return (
     <div className="product-page">
       <h1>상품 목록</h1>
+
+      {loading && <p>상품을 불러오는 중...</p>}
       {error && <p>{error}</p>}
+
       <div className="product-page__list">
         {products.map((product, index) => {
           if (index === products.length - 1) {
