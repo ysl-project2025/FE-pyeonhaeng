@@ -2,18 +2,28 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from '@emotion/styled';
-// import headerLogo from '../../assets/icons/'
+import headerLogo from '../../assets/logos/Logo-kr-org.png'
 import menuIcon from '../../assets/icons/menu.png';
 import closeIcon from '../../assets/icons/close.png';
-import { alc, flexStyle, jb, sectionStyle } from '../../styles/common.css';
+import { ContainImg, alc, flexStyle, jb, sectionStyle } from '../../styles/common.css';
 import SearchBar from './SearchBar';
+import { css } from '@emotion/css';
+import Category from './Category';
 
 function Header() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   return (
     <HeaderWrap>
-      <Link to="/">PyeonHaeng</Link>
+      <Link 
+        to="/"
+        className={css`${headerLogoStyle}`}
+      >
+        <ContainImg 
+          src={headerLogo}
+          alt="PyeonHaeng"
+        />
+      </Link>
 
       <MenuIcon
         src={menuIcon}
@@ -37,6 +47,7 @@ function Header() {
             </li>
           </ul>
           <SearchBar onSearch={(keyword: string) => console.log(`검색: ${keyword}`)}/>
+          <Category />
         </Sidebar>
       )}
     </HeaderWrap>
@@ -53,9 +64,16 @@ const HeaderWrap = styled.div`
   height: 5rem;
   box-shadow: var(--shadow);
 `;
+const headerLogoStyle = css`
+  display: inline-block;
+  width: auto;
+  max-width: 5rem;
+  height: 100%;
+  padding: 0.5rem 0;
+`;
 const MenuIcon = styled.img`
-  width: 3rem;
-  height: 3rem;
+  width: 2.5rem;
+  height: 2.5rem;
   cursor: pointer;
 `;
 

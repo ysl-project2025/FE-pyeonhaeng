@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { PATHS } from '../../constants/constants';
+import styled from '@emotion/styled';
 
 interface LoginFormProps {
   onLogin: (id: string, password: string) => void;
@@ -35,11 +36,18 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
         onChange={(e) => setPassword(e.target.value)}
       />
       <button type="submit">로그인</button>
-      <button type="button" onClick={handleSignup}>
+      <JoinBtn type="button" onClick={handleSignup}>
         회원가입
-      </button>
+      </JoinBtn>
     </form>
   );
 };
 
 export default LoginForm;
+
+const JoinBtn = styled.button`
+  width: 100%;
+  border: 1px solid #000;
+  font-weight: 500;
+  margin-top: 0.5rem;
+`;

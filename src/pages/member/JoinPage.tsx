@@ -1,17 +1,16 @@
 import JoinForm from '../../components/member/Join';
 import useJoin from '../../hooks/member/useJoin';
+import { SectionTitle } from '../../styles/common.css';
 
 const Login = () => {
   const { join } = useJoin();
 
   return (
     <div>
-      <header>banner</header>
       <main>
-        <h1>회원가입</h1>
+        <SectionTitle>회원가입</SectionTitle>
         <JoinForm onJoin={join} />
       </main>
-      <footer>banner</footer>
     </div>
   );
 };
