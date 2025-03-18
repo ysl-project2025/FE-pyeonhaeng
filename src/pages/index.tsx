@@ -1,7 +1,16 @@
-import Layout from '../components/common/Layout';
+import SearchBar from "../components/common/SearchBar";
+
 
 const MainPage = () => {
-  return <Layout />;
+  return (
+    <>
+      <SearchBar 
+        onChange={(value: string): void => {}} 
+        onSearch={(keyword: string): void => {}} 
+      />
+      <p>Main Page</p>
+    </>
+  );
 };
 
 export default MainPage;

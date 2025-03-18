@@ -1,14 +1,18 @@
+
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from '@emotion/styled';
+// import headerLogo from '../../assets/icons/'
 import menuIcon from '../../assets/icons/menu.png';
 import closeIcon from '../../assets/icons/close.png';
+import { alc, flexStyle, jb, sectionStyle } from '../../styles/common.css';
+import SearchBar from './SearchBar';
 
 function Header() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   return (
-    <>
+    <HeaderWrap>
       <Link to="/">PyeonHaeng</Link>
 
       <MenuIcon
@@ -26,46 +30,55 @@ function Header() {
           />
           <ul>
             <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
               <Link to="/login">Login</Link>
             </li>
             <li>
               <Link to="/join">Join</Link>
             </li>
           </ul>
+          <SearchBar 
+            onChange={(value: string): void => {}} 
+            onSearch={(keyword: string): void => {}} 
+          />
         </Sidebar>
       )}
-    </>
+    </HeaderWrap>
   );
 }
 
 export default Header;
 
+const HeaderWrap = styled.div`
+  ${sectionStyle}
+  ${flexStyle}
+  ${jb}
+  ${alc}
+  height: 5rem;
+  box-shadow: var(--shadow);
+`;
 const MenuIcon = styled.img`
-  width: 32px;
-  height: 32px;
+  width: 3rem;
+  height: 3rem;
   cursor: pointer;
 `;
 
 const CloseIcon = styled.img`
-  width: 24px;
-  height: 24px;
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  width: 3rem;
+  height: 3rem;
   cursor: pointer;
-  align-self: flex-end;
 `;
 
 const Sidebar = styled.div`
-  position: fixed;
+  position: absolute;
   top: 0;
-  right: 0;
-  width: 250px;
+  left: 0;
+  width: 90%;
   height: 100vh;
   background: white;
-  box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
-  display: flex;
-  flex-direction: column;
-  padding: 20px;
+  box-shadow: var(--shadow);
+  padding: 5rem 2rem 2rem 2rem;
   z-index: 100;
 `;
