@@ -4,7 +4,7 @@ import { alc, flexStyle, jb } from '../../styles/common.css';
 
 interface SearchBarProps {
   value?: string; // value를 선택적(optional)으로 설정
-  onChange: (value: string) => void;
+  // onChange: (value: string) => void;
   onSearch: (keyword: string) => void;
 }
 

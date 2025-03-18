@@ -36,10 +36,7 @@ function Header() {
               <Link to="/join">Join</Link>
             </li>
           </ul>
-          <SearchBar 
-            onChange={(value: string): void => {}} 
-            onSearch={(keyword: string): void => {}} 
-          />
+          <SearchBar onSearch={(keyword: string) => console.log(`검색: ${keyword}`)}/>
         </Sidebar>
       )}
     </HeaderWrap>
