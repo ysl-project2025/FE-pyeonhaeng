@@ -8,6 +8,7 @@ import closeIcon from '../../assets/icons/close.png';
 import { ContainImg, alc, flexStyle, jb, sectionStyle } from '../../styles/common.css';
 import SearchBar from './SearchBar';
 import { css } from '@emotion/css';
+import Category from './Category';
 
 function Header() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -46,6 +47,7 @@ function Header() {
             </li>
           </ul>
           <SearchBar onSearch={(keyword: string) => console.log(`검색: ${keyword}`)}/>
+          <Category />
         </Sidebar>
       )}
     </HeaderWrap>
