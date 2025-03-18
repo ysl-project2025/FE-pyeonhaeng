@@ -33,7 +33,6 @@ const MainPage: React.FC = () => {
       />
       <SearchBar
         value={searchKeyword}
-        onChange={setSearchKeyword}
         onSearch={handleSearch}
       />
       <ProductList searchKeyword={searchKeyword} sortType={sortType} />
