@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const url = import.meta.env.VITE_BASE_URL;
+const url = import.meta.env.VITE_API_BASE_URL;
 
 const useJoin = () => {
   const join = async (
