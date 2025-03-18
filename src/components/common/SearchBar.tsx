@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import React, { useState, useEffect } from 'react';
-import { SearchBtnOrg, Section, alc, flexStyle, jb } from '../../styles/common.css';
+import { SearchBtnOrg, alc, flexStyle, jb } from '../../styles/common.css';
 
 interface SearchBarProps {
   value?: string; // value를 선택적(optional)으로 설정
