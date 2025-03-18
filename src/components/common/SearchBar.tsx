@@ -40,7 +40,8 @@ const SearchBar: React.FC<SearchBarProps> = ({ value = '', onSearch }) => {
       padding: 0;
     }
     button{
-      
+      width: 4rem;
+      height: 4rem;
     }
   `;
 

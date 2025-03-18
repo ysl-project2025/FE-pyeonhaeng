@@ -1,17 +1,16 @@
 import LoginForm from '../../components/member/Login';
 import uselogin from '../../hooks/member/useLogin';
+import { SectionTitle } from '../../styles/common.css';
 
 const Login = () => {
   const { login } = uselogin();
 
   return (
     <div>
-      <header>banner</header>
       <main>
-        <h1>로그인</h1>
+        <SectionTitle>로그인</SectionTitle>
         <LoginForm onLogin={login} />
       </main>
-      <footer>banner</footer>
     </div>
   );
 };

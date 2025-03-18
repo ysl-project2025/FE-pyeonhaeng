@@ -22,7 +22,7 @@ const DockBarWrap = styled.div`
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 5rem;
+    height: 6rem;
     padding: 0 1.5rem;
     box-shadow: var(--shadow);
 `;

@@ -59,7 +59,7 @@ body {
 	font-style: normal;
 	color: #000;
 	line-height: 1;
-	letter-spacing: -0.09rem;
+	letter-spacing: normal;
 	padding: 0;
 	margin: 0;
 	word-break: keep-all;

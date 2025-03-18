@@ -29,6 +29,10 @@ export const globalStyles = css`
   }
   button[type='submit'] {
     width: 100%;
+    font-weight: 500;
+    color: var(--white);
+    border: 0;
+    background: var(--primary);
   }
 
   /* 공통 클래스 */
@@ -54,20 +58,6 @@ export const globalStyles = css`
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-  }
-  .full {
-    width: 100%;
-    height: 100%;
-  }
-  .fullImg_v img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  .fullImg_t img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
   }
   .talc {
     text-align: center;
@@ -184,6 +174,12 @@ export const iconBtn = css`
 
 export const Section = styled.div`
   ${sectionStyle}
+`;
+export const SectionTitle = styled.h2`
+  text-align: center;
+  margin: 3rem 0;
+  font-size: 1.8rem;
+  font-weight: 500;
 `;
 export const ContainImg = styled.img`
   ${fullSize}
