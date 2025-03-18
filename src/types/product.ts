@@ -1,8 +1,9 @@
 export interface AllProduct {
   productId: number;
+  productUrl: string;
   name: string;
   price: number;
-  description: string;
+  isNew: boolean;
 }
 
 export interface ProductApiResponse {
@@ -10,10 +11,10 @@ export interface ProductApiResponse {
 }
 
 export type Product = {
-  product_id: number;
+  productId: number;
   name: string;
   price: number;
-  description: string;
+  productUrl: string;
   created_at?: string;
 };
 

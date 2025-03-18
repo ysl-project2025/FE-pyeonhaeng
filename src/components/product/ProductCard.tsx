@@ -1,5 +1,6 @@
 import React from 'react';
 import { AllProduct } from '../../types/product';
+import ImageViewer from '../common/ImageViewer';
 
 interface ProductCardProps {
   product: AllProduct;
@@ -14,10 +15,10 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onClick }) => {
   };
 
   return (
-    <div onClick={handleClick}>
+    <div onClick={handleClick} style={{ cursor: 'pointer' }}>
       <h3>{product.name}</h3>
-      <p>{product.price.toLocaleString()}원</p>
-      <p>{product.description}</p>
+      <ImageViewer src={product.productUrl} alt={product.name} />
+      <p>{product.price}원</p>
     </div>
   );
 };

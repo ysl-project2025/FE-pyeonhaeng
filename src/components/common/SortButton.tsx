@@ -7,7 +7,7 @@ interface SortButtonProps {
 }
 
 const SortButton: React.FC<SortButtonProps> = ({
-  options = ['리뷰', '추천', '조회'],
+  options = ['조회수', '신상품', '평점', '리뷰'],
   onSort,
 }) => {
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
