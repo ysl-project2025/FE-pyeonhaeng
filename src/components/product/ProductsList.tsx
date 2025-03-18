@@ -1,8 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React, { useEffect } from 'react';
 import ProductCard from './ProductCard';
-import { AllProduct, ProductApiResponse } from '../../types/product';
-const url = import.meta.env.VITE_BASE_URL;
+import useProductList from '../../hooks/product/useProductList'; // ✅ 새로 만든 훅을 사용
 
 interface ProductPageProps {
   searchKeyword?: string; // 검색 키워드를 상위에서 받아올 수도 있음
@@ -13,21 +11,8 @@ const ProductPage: React.FC<ProductPageProps> = ({
   searchKeyword,
   sortType,
 }) => {
-  const [products, setProducts] = useState<AllProduct[]>([]);
+  const { products, loading, error } = useProductList(); // ✅ 상품 목록 불러오기
 
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const response = await axios.get<ProductApiResponse>(`${url}/product`);
-        setProducts(response.data.data || []);
-      } catch (error) {
-        console.error('상품 데이터를 불러오는 중 오류 발생:', error);
-        setProducts([]);
-      }
-    };
-
-    fetchProducts();
-  }, []);
   useEffect(() => {
     if (searchKeyword) {
       console.log(`검색 키워드: ${searchKeyword}`);
@@ -51,6 +36,10 @@ const ProductPage: React.FC<ProductPageProps> = ({
   return (
     <div className="product-page">
       <h1>상품 목록</h1>
+
+      {loading && <p>상품을 불러오는 중...</p>}
+      {error && <p>{error}</p>}
+
       <div className="product-page__list">
         {products.map((product) => (
           <ProductCard
