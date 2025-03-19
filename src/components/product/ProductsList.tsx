@@ -1,65 +1,73 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { useNavigate } from 'react-router-dom'; // ✅ 추가
 import ProductCard from './ProductCard';
-import { AllProduct, ProductApiResponse } from '../../types/product';
-const url = import.meta.env.VITE_BASE_URL;
+import useProductList from '../../hooks/product/useProductList';
 
 interface ProductPageProps {
-  searchKeyword?: string; // 검색 키워드를 상위에서 받아올 수도 있음
-  sortType?: string; // 정렬 기준을 상위에서 받아올 수도 있음
+  searchKeyword?: string;
+  sortType?: string;
 }
 
 const ProductPage: React.FC<ProductPageProps> = ({
   searchKeyword,
   sortType,
 }) => {
-  const [products, setProducts] = useState<AllProduct[]>([]);
+  const [page, setPage] = useState(1);
+  const { products, loading, error } = useProductList(page);
+  const observerRef = useRef<IntersectionObserver | null>(null);
+  const navigate = useNavigate(); // ✅ 페이지 이동을 위한 useNavigate 훅 추가
 
   useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const response = await axios.get<ProductApiResponse>(`${url}/product`);
-        setProducts(response.data.data || []);
-      } catch (error) {
-        console.error('상품 데이터를 불러오는 중 오류 발생:', error);
-        setProducts([]);
-      }
-    };
+    setPage(1);
+  }, [searchKeyword, sortType]);
 
-    fetchProducts();
-  }, []);
-  useEffect(() => {
-    if (searchKeyword) {
-      console.log(`검색 키워드: ${searchKeyword}`);
-      // 실제로는 products를 필터링하거나 재호출하는 로직 등을 구현
-    }
-  }, [searchKeyword]);
+  const lastElementRef = useCallback(
+    (node: HTMLDivElement | null) => {
+      if (loading) return;
+      if (observerRef.current) observerRef.current.disconnect();
 
-  useEffect(() => {
-    if (sortType) {
-      console.log(`정렬 기준: ${sortType}`);
-      // 실제로는 products를 정렬하거나 재호출하는 로직 등을 구현
-    }
-  }, [sortType]);
+      observerRef.current = new IntersectionObserver(
+        (entries) => {
+          if (entries[0].isIntersecting) {
+            setPage((prev) => prev + 1);
+          }
+        },
+        { threshold: 1.0 },
+      );
 
-  // 상품 카드 클릭 시 실행되는 이벤트 핸들러
+      if (node) observerRef.current.observe(node);
+    },
+    [loading],
+  );
+
+  // ✅ 상품 클릭 시 해당 상품의 상세 페이지로 이동
   const handleProductClick = (id: number) => {
-    console.log(`상품 ID ${id} 클릭됨`);
-    // 예: 상세 페이지로 이동하거나 모달을 표시하는 등 원하는 동작을 추가
+    navigate(`/product/${id}`); // ✅ /product/{상품 ID} 경로로 이동
   };
 
   return (
     <div className="product-page">
       <h1>상품 목록</h1>
+      {error && <p>{error}</p>}
       <div className="product-page__list">
-        {products.map((product) => (
-          <ProductCard
-            key={product.productId}
-            product={product}
-            onClick={handleProductClick}
-          />
-        ))}
+        {products.map((product, index) => {
+          if (index === products.length - 1) {
+            return (
+              <div ref={lastElementRef} key={product.productId}>
+                <ProductCard product={product} onClick={handleProductClick} />
+              </div>
+            );
+          }
+          return (
+            <ProductCard
+              key={product.productId}
+              product={product}
+              onClick={handleProductClick}
+            />
+          );
+        })}
       </div>
+      {loading && <p>상품을 불러오는 중...</p>}
     </div>
   );
 };
