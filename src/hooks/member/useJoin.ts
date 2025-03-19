@@ -1,6 +1,4 @@
-import axios from 'axios';
-
-const url = import.meta.env.VITE_API_BASE_URL;
+import api from '../../utils/api'; // ✅ 전역 axios 인스턴스 사용
 
 const useJoin = () => {
   const join = async (
@@ -9,22 +7,16 @@ const useJoin = () => {
     userName: string,
   ) => {
     try {
-      const response = await axios.post(
-        `${url}/member/join`,
+      const response = await api.post(
+        '/member/join', // ✅ baseURL이 설정되어 있으므로 전체 URL 필요 없음
         {
           user_id: userId,
           user_password: userPassword,
           user_name: userName,
         },
-        {
-          withCredentials: true,
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        },
       );
 
-      console.log('회원가입 성공:', response);
+      console.log(response.data.data);
     } catch (error) {
       console.error('회원가입 오류:', error);
     }

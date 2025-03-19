@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios';
+import api from '../../utils/api'; // ✅ 전역 axios 인스턴스 사용
 import { AllProduct, ProductApiResponse } from '../../types/product';
-const url = import.meta.env.VITE_API_BASE_URL;
+
 const useProductList = (page: number) => {
   const [products, setProducts] = useState<AllProduct[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
@@ -11,9 +11,11 @@ const useProductList = (page: number) => {
     const fetchProducts = async () => {
       try {
         setLoading(true);
-        const response = await axios.get<ProductApiResponse>(
-          `${url}/product?page=${page}`,
+
+        const response = await api.get<ProductApiResponse>(
+          `/product?page=${page}`,
         );
+
         console.log(response.data.data);
         setProducts((prevProducts) => [
           ...prevProducts,
@@ -28,7 +30,7 @@ const useProductList = (page: number) => {
     };
 
     fetchProducts();
-  }, [page]); // 페이지가 변경될 때마다 호출
+  }, [page]);
 
   return { products, loading, error };
 };

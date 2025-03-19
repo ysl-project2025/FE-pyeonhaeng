@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'react';
-import axios, { AxiosError } from 'axios'; // ✅ AxiosError 추가
+import { AxiosError } from 'axios'; // ✅ AxiosError만 임포트
+import api from '../../utils/api'; // ✅ 전역 axios 인스턴스 사용
 import { ProductDetailResponse, Product } from '../../types/product';
-
-const url = import.meta.env.VITE_API_BASE_URL;
 
 const useProductDetail = (productId: string | undefined) => {
   const [product, setProduct] = useState<Product | null>(null);
@@ -17,12 +16,12 @@ const useProductDetail = (productId: string | undefined) => {
         setLoading(true);
         setError(null);
 
-        const response = await axios.get<ProductDetailResponse>(
-          `${url}/product/${productId}`,
+        const response = await api.get<ProductDetailResponse>(
+          `/product/${productId}`,
         );
+
         setProduct(response.data.data);
       } catch (err) {
-        // ✅ AxiosError 타입을 사용하여 명확한 오류 처리
         const error = err as AxiosError;
 
         if (error.response?.status === 404) {
