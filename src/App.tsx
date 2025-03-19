@@ -1,8 +1,8 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import LoginPage from './pages/member/LoginPage';
 import JoinPage from './pages/member/JoinPage';
+import MainPage from './pages/IndexPage';
 import ProductDetailPage from './pages/ProductDetailPage';
-import MainPage from './pages/index';
 import { Provider } from 'react-redux';
 import store from './store';
 import { Global } from '@emotion/react';
@@ -18,7 +18,7 @@ const App = () => {
         <Routes>
         <Route element={<Layout />}>
           <Route path={PATHS.main} element={<MainPage />} />
-          <Route path={PATHS.detail} element={<ProductDetailPage />} />
+          <Route path={PATHS.product_detail} element={<ProductDetailPage />} />
           <Route path={PATHS.login} element={<LoginPage />} />
           <Route path={PATHS.join} element={<JoinPage />} />
         </Route>

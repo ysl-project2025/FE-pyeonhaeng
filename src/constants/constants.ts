@@ -1,6 +1,7 @@
 export const PATHS = {
   login: '/login',
   join: '/join',
-  detail: '/detail',
+  product_list: '/product_list',
+  product_detail: '/product_detail',
   main: '/',
 };

@@ -1,27 +1,16 @@
 import { useDispatch } from 'react-redux';
 import { loginSuccess } from '../../store/slices/login.slice';
-import axios from 'axios';
-
-const url = import.meta.env.VITE_API_BASE_URL;
+import api from '../../utils/api'; // ✅ 전역 axios 인스턴스 사용
 
 const useLogin = () => {
   const dispatch = useDispatch();
 
   const login = async (userId: string, userPassword: string) => {
     try {
-      const response = await axios.post(
-        `${url}/member/login`,
-        {
-          user_id: userId,
-          user_password: userPassword,
-        },
-        {
-          withCredentials: true, // ✅ httpOnly Cookie 사용을 위해 필요
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        },
-      );
+      const response = await api.post('/member/login', {
+        user_id: userId,
+        user_password: userPassword,
+      });
 
       if (response.status === 200) {
         dispatch(loginSuccess());
@@ -33,6 +22,7 @@ const useLogin = () => {
       console.error('로그인 오류:', error);
     }
   };
+
   return { login };
 };
 
