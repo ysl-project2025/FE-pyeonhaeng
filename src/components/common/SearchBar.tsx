@@ -1,8 +1,10 @@
+import styled from '@emotion/styled';
 import React, { useState, useEffect } from 'react';
+import { SearchBtnOrg, alc, flexStyle, jb } from '../../styles/common.css';
 
 interface SearchBarProps {
   value?: string; // value를 선택적(optional)으로 설정
-  onChange: (value: string) => void;
+  // onChange: (value: string) => void;
   onSearch: (keyword: string) => void;
 }
 
@@ -23,17 +25,40 @@ const SearchBar: React.FC<SearchBarProps> = ({ value = '', onSearch }) => {
     }
   };
 
+
+  const SearchWrap = styled.div`
+    ${flexStyle}
+    ${jb}
+    ${alc}
+    border: 2px solid var(--primary);
+    border-radius: 2rem;
+    margin: 2rem 0;
+    padding: 0 1.5rem;
+    input{
+      height: auto;
+      border: 0;
+      padding: 0;
+    }
+    button{
+      width: 4rem;
+      height: 4rem;
+    }
+  `;
+
   return (
-    <div>
-      <input
-        type="text"
-        placeholder="상품 ID 입력"
-        value={inputValue}
-        onChange={handleChange}
-        onKeyDown={handleKeyDown}
-      />
-      <button onClick={() => onSearch(inputValue)}>검색</button>
-    </div>
+    <>
+      <SearchWrap>
+        <input
+          type="text"
+          placeholder="상품 ID 입력"
+          value={inputValue}
+          onChange={handleChange}
+          onKeyDown={handleKeyDown}
+          style={{margin: 0}}
+        />
+        <SearchBtnOrg onClick={() => onSearch(inputValue)}>검색</SearchBtnOrg>
+      </SearchWrap>
+    </>
   );
 };
 

@@ -1,15 +1,29 @@
+
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from '@emotion/styled';
+import headerLogo from '../../assets/logos/Logo-kr-org.png'
 import menuIcon from '../../assets/icons/menu.png';
 import closeIcon from '../../assets/icons/close.png';
+import { ContainImg, alc, flexStyle, jb, sectionStyle } from '../../styles/common.css';
+import SearchBar from './SearchBar';
+import { css } from '@emotion/css';
+import Category from './Category';
 
 function Header() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   return (
-    <>
-      <Link to="/">PyeonHaeng</Link>
+    <HeaderWrap>
+      <Link 
+        to="/"
+        className={css`${headerLogoStyle}`}
+      >
+        <ContainImg 
+          src={headerLogo}
+          alt="PyeonHaeng"
+        />
+      </Link>
 
       <MenuIcon
         src={menuIcon}
@@ -26,46 +40,60 @@ function Header() {
           />
           <ul>
             <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
               <Link to="/login">Login</Link>
             </li>
             <li>
               <Link to="/join">Join</Link>
             </li>
           </ul>
+          <SearchBar onSearch={(keyword: string) => console.log(`검색: ${keyword}`)}/>
+          <Category />
         </Sidebar>
       )}
-    </>
+    </HeaderWrap>
   );
 }
 
 export default Header;
 
+const HeaderWrap = styled.div`
+  ${sectionStyle}
+  ${flexStyle}
+  ${jb}
+  ${alc}
+  height: 5rem;
+  box-shadow: var(--shadow);
+`;
+const headerLogoStyle = css`
+  display: inline-block;
+  width: auto;
+  max-width: 5rem;
+  height: 100%;
+  padding: 0.5rem 0;
+`;
 const MenuIcon = styled.img`
-  width: 32px;
-  height: 32px;
+  width: 2.5rem;
+  height: 2.5rem;
   cursor: pointer;
 `;
 
 const CloseIcon = styled.img`
-  width: 24px;
-  height: 24px;
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  width: 3rem;
+  height: 3rem;
   cursor: pointer;
-  align-self: flex-end;
 `;
 
 const Sidebar = styled.div`
-  position: fixed;
+  position: absolute;
   top: 0;
-  right: 0;
-  width: 250px;
+  left: 0;
+  width: 90%;
   height: 100vh;
   background: white;
-  box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
-  display: flex;
-  flex-direction: column;
-  padding: 20px;
+  box-shadow: var(--shadow);
+  padding: 5rem 2rem 2rem 2rem;
   z-index: 100;
 `;

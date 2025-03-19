@@ -4,7 +4,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
 :root {
-	--trickolor: #d7582f;
+	--primary: #F16C1E;
 	--mauve: #E7dcda;
 	--black: #000;
 	--white: #fff;
@@ -31,20 +31,24 @@
 	--white_20: rgba(255,255,255,.2);
 	--white_10: rgba(255,255,255,.1);
 	
-  --textColor: #232323;
+ 	--textColor: #232323;
 	--border: 1px solid #e5e5e5;
 	--radius: 0.5rem;
-  --inputHeight: 5rem;
+  	--inputHeight: 5rem;
+	--shadow: #eee 1px 0px 6px 1px;
 }
 
 html, body {
 	font-size: 62.5%;
 }
 body {
+	position: relative;
 	width: 100%;
 	max-width: 768px;
-  height: auto;
+  	height: auto;
+	min-height: 100vh;
 	margin: 0 auto;
+	box-shadow: var(--shadow);
 }
 * {
 	font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
@@ -55,7 +59,7 @@ body {
 	font-style: normal;
 	color: #000;
 	line-height: 1;
-	letter-spacing: -0.09rem;
+	letter-spacing: normal;
 	padding: 0;
 	margin: 0;
 	word-break: keep-all;

@@ -1,6 +1,8 @@
 {
   "compilerOptions": {
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "jsxImportSource": "@emotion/react",
+    "types": ["@emotion/react/types/css-prop"] 
   },
   "files": [],
   "references": [

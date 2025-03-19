@@ -1,4 +1,7 @@
 import { css } from '@emotion/react';
+import styled from '@emotion/styled';
+import searchIcon from '../assets/icons/search.png';
+import searchIconOrg from '../assets/icons/search-org.png';
 
 export const globalStyles = css`
   input[type='text'],
@@ -7,7 +10,6 @@ export const globalStyles = css`
   input[type='number'],
   input[type='address'],
   input[type='tel'] {
-    /* 'tell'이 아니라 'tel'이 맞음 */
     border: var(--border);
     color: var(--textColor);
     border-radius: var(--radius);
@@ -27,6 +29,10 @@ export const globalStyles = css`
   }
   button[type='submit'] {
     width: 100%;
+    font-weight: 500;
+    color: var(--white);
+    border: 0;
+    background: var(--primary);
   }
 
   /* 공통 클래스 */
@@ -53,108 +59,8 @@ export const globalStyles = css`
     left: 50%;
     transform: translate(-50%, -50%);
   }
-  .full {
-    width: 100%;
-    height: 100%;
-  }
-  .fullImg_v img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  .fullImg_t img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-  }
   .talc {
     text-align: center;
-  }
-  .borderTop {
-    border-top: var(--border);
-  }
-  .borderBot {
-    border-bottom: var(--border);
-  }
-  .line_t {
-    border-top: 1px solid var(--thumb);
-  }
-  .line_b {
-    border-bottom: 1px solid var(--thumb);
-  }
-
-  /* 플렉스 */
-  .fl {
-    display: flex;
-  }
-  .fl.jc {
-    justify-content: center;
-  }
-  .fl.jb {
-    justify-content: space-between;
-  }
-  .fl.js {
-    justify-content: flex-start;
-  }
-  .fl.je {
-    justify-content: flex-end;
-  }
-  .fl.alc {
-    align-items: center;
-  }
-  .fl.als {
-    align-items: flex-start;
-  }
-  .fl.ale {
-    align-items: flex-end;
-  }
-  .fl.nowr {
-    flex-wrap: nowrap;
-  }
-  .fl.dir {
-    flex-direction: row;
-  }
-  .fl.dic {
-    flex-direction: column;
-  }
-  .fl.fl1 {
-    flex: 1;
-  }
-
-  .gap2_t {
-    margin-top: 2rem;
-  }
-  .gap3_t {
-    margin-top: 3rem;
-  }
-  .gap4_t {
-    margin-top: 4rem;
-  }
-  .gap2_b {
-    margin-bottom: 2rem;
-  }
-  .gap3_b {
-    margin-bottom: 3rem;
-  }
-  .gap4_b {
-    margin-bottom: 4rem;
-  }
-
-  .mr1 {
-    margin-right: 1rem;
-  }
-  .ml1 {
-    margin-left: 1rem;
-  }
-  .mt1 {
-    margin-top: 1rem;
-  }
-  .mb1 {
-    margin-bottom: 1rem;
-  }
-  .mcX {
-    margin-left: auto;
-    margin-right: auto;
   }
 
   /* 필수 */
@@ -213,86 +119,82 @@ export const globalStyles = css`
     background: url(../images/ic_chk_on.png) no-repeat 0 0;
   }
 
-  /* 말줄임 */
-  .txt_over_1,
-  .txt_over_2,
-  .txt_over_3,
-  .txt_over_4 {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-  }
-  .txt_over_1 {
-    -webkit-line-clamp: 1;
-  }
-  .txt_over_2 {
-    -webkit-line-clamp: 2;
-  }
-  .txt_over_3 {
-    -webkit-line-clamp: 3;
-  }
-  .txt_over_4 {
-    -webkit-line-clamp: 4;
-  }
 `;
 
-const inputWidth = {
-  default: '100%',
-  small: '32rem',
-};
-export const inputStyle = (variant: keyof typeof inputWidth = 'default') => ({
-  border: 'var(--border)',
-  color: 'var(--textColor)',
-  borderRadius: 'var(--radius)',
-  padding: '0 2rem',
-  background: 'var(--white)',
-  height: 'var(--inputHeight)',
-  width: inputWidth[variant],
-});
-export const smallInputStyle = inputStyle('small');
+export const sectionStyle = css`
+  width: 100%;
+  padding-right: 1.5rem;
+  padding-left: 1.5rem;
+`;
+export const fullSize = css`
+  width: 100%;
+  height: 100%;
+`;
 
 /* *************************************************
  *                       FLEX                       *
  ****************************************************/
-type JustifyContentVariant = 'default' | 'jb' | 'js' | 'je';
-type AlignItemsVariant = 'default' | 'als' | 'ale';
-type FlexWrapVariant = 'default' | 'noWrap';
-type FlexDirectionVariant = 'default' | 'row';
+export const flexStyle = css`
+  display: flex;
+`;
+export const jc = css`
+  justify-content: center;
+`;
+export const jb = css`
+  justify-content: space-between;
+`;
+export const js = css`
+  justify-content: flex-start;
+`;
+export const je = css`
+  justify-content: flex-end;
+`;
+export const alc = css`
+  align-items: center;
+`;
+export const als = css`
+  align-items: flex-start;
+`;
+export const ale = css`
+  align-items: flex-end;
+`;
+export const NoWrap = css`
+  flex-wrap: nowrap;
+`;
+export const iconBtn = css`
+  border: 0;
+  font-size: 0;
+  line-height: 0;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  background-color: initial;
+`;
 
-const justifyContent: Record<
-  JustifyContentVariant,
-  { justifyContent: string }
-> = {
-  default: { justifyContent: 'center' },
-  jb: { justifyContent: 'space-between' },
-  js: { justifyContent: 'flex-start' },
-  je: { justifyContent: 'flex-end' },
-};
-const alignItems: Record<AlignItemsVariant, { alignItems: string }> = {
-  default: { alignItems: 'center' },
-  als: { alignItems: 'flex-start' },
-  ale: { alignItems: 'flex-end' },
-};
-const flexWrap: Record<FlexWrapVariant, { flexWrap: string }> = {
-  default: { flexWrap: 'wrap' },
-  noWrap: { flexWrap: 'nowrap' },
-};
-const flexDirection: Record<FlexDirectionVariant, { flexDirection: string }> = {
-  default: { flexDirection: 'column' },
-  row: { flexDirection: 'row' },
-};
 
-export const flex = (
-  justify: JustifyContentVariant = 'default',
-  align: AlignItemsVariant = 'default',
-  wrap: FlexWrapVariant = 'default',
-  direction: FlexDirectionVariant = 'default',
-) => ({
-  display: 'flex',
-  ...justifyContent[justify],
-  ...alignItems[align],
-  ...flexWrap[wrap],
-  ...flexDirection[direction],
-});
-// const containerStyle = css`${flex("jb", "ale", "noWrap", "row")}`;
+export const Section = styled.div`
+  ${sectionStyle}
+`;
+export const SectionTitle = styled.h2`
+  text-align: center;
+  margin: 3rem 0;
+  font-size: 1.8rem;
+  font-weight: 500;
+`;
+export const ContainImg = styled.img`
+  ${fullSize}
+  object-fit: contain;
+`;
+export const CoverImg = styled.img`
+  ${fullSize}
+  object-fit: cover;
+`;
+
+export const SearchBtn = styled.button`
+  background-image: url(${searchIcon});
+  ${iconBtn}
+`;
+export const SearchBtnOrg = styled.button`
+  background-image: url(${searchIconOrg});
+  ${iconBtn}
+`;
