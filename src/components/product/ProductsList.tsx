@@ -42,7 +42,7 @@ const ProductPage: React.FC<ProductPageProps> = ({
 
   // ✅ 상품 클릭 시 해당 상품의 상세 페이지로 이동
   const handleProductClick = (id: number) => {
-    navigate(`/product/${id}`); // ✅ /product/{상품 ID} 경로로 이동
+    navigate(`/product/${id}`);
   };
 
   return (
@@ -53,14 +53,14 @@ const ProductPage: React.FC<ProductPageProps> = ({
         {products.map((product, index) => {
           if (index === products.length - 1) {
             return (
-              <div ref={lastElementRef} key={product.productId}>
+              <div ref={lastElementRef} key={product.product_id}>
                 <ProductCard product={product} onClick={handleProductClick} />
               </div>
             );
           }
           return (
             <ProductCard
-              key={product.productId}
+              key={product.product_id}
               product={product}
               onClick={handleProductClick}
             />
