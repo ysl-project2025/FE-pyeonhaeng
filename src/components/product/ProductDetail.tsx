@@ -1,4 +1,5 @@
 import React from 'react';
+import { ProductName, ProductPrice } from '../../styles/common.css';
 
 interface ProductDetailProps {
   name: string;
@@ -8,8 +9,8 @@ interface ProductDetailProps {
 const ProductDetail: React.FC<ProductDetailProps> = ({ name, price }) => {
   return (
     <div>
-      <p>{name}</p>
-      <p>{price}원</p>
+      <ProductName className='detailName'>{name}</ProductName>
+      <ProductPrice className='detailPrice'>{price}원</ProductPrice>
     </div>
   );
 };

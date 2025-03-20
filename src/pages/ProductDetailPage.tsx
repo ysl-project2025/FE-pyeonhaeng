@@ -9,6 +9,7 @@ import MoreButton from '../components/common/MoreButton';
 import ReviewPage from '../pages/ReivewPage'; // ✅ ReviewPage 추가
 import useReviews from '../hooks/review/useReviews';
 
+
 const ProductDetailPage: React.FC = () => {
   const location = useLocation(); // ✅ useLocation 사용
   const productId = location.state?.productId; // ✅ state에서 productId 가져오기
@@ -28,16 +29,18 @@ const ProductDetailPage: React.FC = () => {
   return (
     <div>
       {/* ✅ 이미지 뷰어 & 상품 정보 */}
-      <div>
-        <ImageViewer
-          src={product.product_image_url}
-          alt={product.product_name}
-        />
+      <Section>
+        <ImgWrap className='detailImg'>
+          <ImageViewer
+            src={product.product_image_url}
+            alt={product.product_name}
+          />
+        </ImgWrap>
         <ProductDetail
           name={product.product_name}
           price={product.product_price}
         />
-      </div>
+      </Section>
 
       {/* ✅ 리뷰 작성 버튼 */}
       <ReviewWriteButton onClick={() => console.log('리뷰 작성 모달 열기!')} />
