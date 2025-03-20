@@ -10,15 +10,15 @@ interface ProductCardProps {
 const ProductCard: React.FC<ProductCardProps> = ({ product, onClick }) => {
   const handleClick = () => {
     if (onClick) {
-      onClick(product.productId);
+      onClick(product.product_id);
     }
   };
-
+  console.log(product);
   return (
     <div onClick={handleClick} style={{ cursor: 'pointer' }}>
-      <h3>{product.name}</h3>
-      <ImageViewer src={product.productUrl} alt={product.name} />
-      <p>{product.price}원</p>
+      <h3>{product.product_name}</h3>
+      <ImageViewer src={product.product_image_url} alt={product.product_name} />
+      <p>{product.product_price}원</p>
     </div>
   );
 };
