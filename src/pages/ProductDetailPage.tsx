@@ -42,24 +42,26 @@ const ProductDetailPage: React.FC = () => {
         />
       </Section>
 
-      {/* ✅ 리뷰 작성 버튼 */}
-      <ReviewWriteButton onClick={() => console.log('리뷰 작성 모달 열기!')} />
+      <Section>
+        {/* ✅ 리뷰 작성 버튼 */}
+        <ReviewWriteButton onClick={() => console.log('리뷰 작성 모달 열기!')} />
 
-      {/* ✅ 처음 5개 리뷰만 표시 */}
-      <ReviewList reviews={visibleReviews} />
+        {/* ✅ 처음 5개 리뷰만 표시 */}
+        <ReviewList reviews={visibleReviews} />
 
-      {/* ✅ 리뷰가 5개 초과할 경우 "더보기" 버튼 표시 */}
-      {hasMoreReviews && (
-        <MoreButton onClick={() => setIsReviewModalOpen(true)} />
-      )}
+        {/* ✅ 리뷰가 5개 초과할 경우 "더보기" 버튼 표시 */}
+        {hasMoreReviews && (
+          <MoreButton onClick={() => setIsReviewModalOpen(true)} />
+        )}
 
-      {/* ✅ ReviewPage 모달 - 모든 리뷰를 표시 */}
-      {isReviewModalOpen && (
-        <ReviewPage
-          reviews={reviews}
-          onClose={() => setIsReviewModalOpen(false)}
-        />
-      )}
+        {/* ✅ ReviewPage 모달 - 모든 리뷰를 표시 */}
+        {isReviewModalOpen && (
+          <ReviewPage
+            reviews={reviews}
+            onClose={() => setIsReviewModalOpen(false)}
+          />
+        )}
+      </Section>
     </div>
   );
 };
