@@ -1,4 +1,5 @@
 import React from 'react';
+import { ReviewWrap } from '../../styles/common.css';
 
 interface ReviewCardProps {
   title: string;
@@ -8,11 +9,13 @@ interface ReviewCardProps {
 
 const ReviewCard: React.FC<ReviewCardProps> = ({ title, rating, date }) => {
   return (
-    <div>
+    <ReviewWrap>
+      <ul>
+        <li className='rating'>⭐ {rating}</li>
+        <li className='date'>{date}</li>
+      </ul>
       <p>{title}</p>
-      <p>⭐ {rating}</p>
-      <p>{date}</p>
-    </div>
+    </ReviewWrap>
   );
 };
 

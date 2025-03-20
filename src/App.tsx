@@ -9,6 +9,9 @@ import { Global } from '@emotion/react';
 import { globalStyles } from './styles/common.css';
 import { PATHS } from './constants/constants';
 import Layout from './components/common/Layout';
+import AllProduct from './pages/AllProduct';
+import EventProduct from './pages/EventProduct';
+import RankProduct from './pages/RankProduct';
 
 const App = () => {
   return (
@@ -19,6 +22,9 @@ const App = () => {
         <Route element={<Layout />}>
           <Route path={PATHS.main} element={<MainPage />} />
           <Route path={PATHS.product_detail} element={<ProductDetailPage />} />
+          <Route path={PATHS.product_list_all} element={<AllProduct />} />
+          <Route path={PATHS.product_list_event} element={<EventProduct />} />
+          <Route path={PATHS.product_list_rank} element={<RankProduct />} />
           <Route path={PATHS.login} element={<LoginPage />} />
           <Route path={PATHS.join} element={<JoinPage />} />
         </Route>

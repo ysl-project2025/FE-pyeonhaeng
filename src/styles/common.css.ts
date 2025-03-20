@@ -2,6 +2,8 @@ import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import searchIcon from '../assets/icons/search.png';
 import searchIconOrg from '../assets/icons/search-org.png';
+import prevIcon from '../assets/icons/left.png';
+import nextIcon from '../assets/icons/right.png';
 
 export const globalStyles = css`
   input[type='text'],
@@ -198,6 +200,19 @@ export const SearchBtnOrg = styled.button`
   background-image: url(${searchIconOrg});
   ${iconBtn}
 `;
+export const PrevBtn = styled.button`
+  padding: 0;
+  width: 2rem;
+  background-image: url(${prevIcon});
+  ${iconBtn}
+`;
+export const NextBtn = styled.button`
+  padding: 0;
+  width: 2rem;
+  background-image: url(${nextIcon});
+  ${iconBtn}
+`;
+
 
 /* *********** Product *********** */
 export const ListWrap01 = styled.div`
@@ -247,3 +262,39 @@ export const ProductPrice = styled.p`
   }
 `;
 
+
+/* *********** Review *********** */
+export const ReviewWrap = styled.div`
+  width: 100%;
+  padding: 1.5rem 1rem;
+  border-radius: var(--radius);
+  background: var(--gray1);
+  margin: 1rem 0;
+  ul{
+    ${flexStyle}
+    ${jb}
+    ${alc}
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+    border-bottom: var(--border);
+    .date{
+      font-size: 1.4rem;
+      color: var(--black_60);
+    }
+  }
+  p{
+    font-size: 1.5rem;
+    line-height: 1.16;
+  }
+`;
+
+export const ReviewModal = styled.div`
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  width: calc(100% - 1.5rem);
+  border: var(--border);
+  padding: 4rem 1rem 2rem 1rem;
+`;
