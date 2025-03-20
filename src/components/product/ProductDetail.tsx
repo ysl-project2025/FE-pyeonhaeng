@@ -1,30 +1,16 @@
 import React from 'react';
+import { ProductName, ProductPrice } from '../../styles/common.css';
 
 interface ProductDetailProps {
-  productId: number;
   name: string;
   price: number;
 }
 
-const mockProduct: ProductDetailProps = {
-  productId: 1,
-  name: '테스트 상품',
-  price: 19900,
-};
-
-const ProductDetail: React.FC<ProductDetailProps> = ({
-  productId,
-  name,
-  price,
-}) => {
-  productId = mockProduct.productId;
-  name = mockProduct.name;
-  price = mockProduct.price;
+const ProductDetail: React.FC<ProductDetailProps> = ({ name, price }) => {
   return (
     <div>
-      <p>{productId}</p>
-      <p>{name}</p>
-      <p>{price}원</p>
+      <ProductName className='detailName'>{name}</ProductName>
+      <ProductPrice className='detailPrice'>{price}원</ProductPrice>
     </div>
   );
 };

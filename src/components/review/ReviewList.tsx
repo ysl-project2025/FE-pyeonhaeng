@@ -11,10 +11,10 @@ const ReviewList: React.FC<ReviewListProps> = ({ reviews }) => {
     <div>
       {reviews.map((review) => (
         <ReviewCard
-          key={review.id}
-          title={review.title}
+          key={review.reviewId}
+          title={review.content}
           rating={review.rating}
-          date={review.date}
+          date={review.createdAt}
         />
       ))}
     </div>
