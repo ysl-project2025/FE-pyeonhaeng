@@ -16,7 +16,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ value = '', onSearch }) => {
     if (value !== inputValue) {
       setInputValue(value);
     }
-  }, [value]);
+  }, [inputValue, value]);
 
   // ✅ 입력 시 useRef 값만 변경 (상태 변경 X → 리렌더링 방지)
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
