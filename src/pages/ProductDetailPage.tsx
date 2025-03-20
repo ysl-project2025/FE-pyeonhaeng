@@ -8,6 +8,7 @@ import ReviewList from '../components/review/ReviewList';
 import MoreButton from '../components/common/MoreButton';
 import ReviewPage from '../pages/ReivewPage'; // ✅ ReviewPage 추가
 import Review from '../types/review';
+import { ImgWrap, Section } from '../styles/common.css';
 
 const mockReviews: Review[] = [
   { id: 1, title: '좋은 상품!', rating: 5, date: '2024-03-18' },
@@ -30,16 +31,18 @@ const ProductDetailPage: React.FC = () => {
   return (
     <div>
       {/* ✅ 이미지 뷰어 & 상품 정보 */}
-      <div>
-        <ImageViewer
-          src={product.product_image_url}
-          alt={product.product_name}
-        />
+      <Section>
+        <ImgWrap className='detailImg'>
+          <ImageViewer
+            src={product.product_image_url}
+            alt={product.product_name}
+          />
+        </ImgWrap>
         <ProductDetail
           name={product.product_name}
           price={product.product_price}
         />
-      </div>
+      </Section>
 
       {/* ✅ 리뷰 작성 버튼 */}
       <ReviewWriteButton onClick={() => console.log('리뷰 작성 모달 열기!')} />
