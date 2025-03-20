@@ -8,7 +8,7 @@ import ReviewList from '../components/review/ReviewList';
 import MoreButton from '../components/common/MoreButton';
 import ReviewPage from '../pages/ReivewPage'; // ✅ ReviewPage 추가
 import useReviews from '../hooks/review/useReviews';
-
+import { Section, ImgWrap } from '../styles/common.css';
 
 const ProductDetailPage: React.FC = () => {
   const location = useLocation(); // ✅ useLocation 사용
@@ -30,7 +30,7 @@ const ProductDetailPage: React.FC = () => {
     <div>
       {/* ✅ 이미지 뷰어 & 상품 정보 */}
       <Section>
-        <ImgWrap className='detailImg'>
+        <ImgWrap className="detailImg">
           <ImageViewer
             src={product.product_image_url}
             alt={product.product_name}
