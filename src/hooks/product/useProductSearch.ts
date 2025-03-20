@@ -1,38 +1,39 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import api from '../../utils/api'; // ✅ 전역 axios 인스턴스 사용
-import { Product } from '../../types/product';
-import { AxiosError } from 'axios';
+import { AllProduct } from '../../types/product';
 
-const useProductSearch = () => {
-  const [product, setProduct] = useState<Product | null>(null);
+const useProductSearch = (searchKeyword: string) => {
+  const [products, setProducts] = useState<AllProduct[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
-  const [loading, setLoading] = useState(false);
 
-  const searchProduct = async (productId: string) => {
-    if (!productId.trim()) return;
-
-    setLoading(true);
-    setError(null);
-    setProduct(null);
-
-    try {
-      const response = await api.get(`/product/${productId}`);
-      setProduct(response.data.data);
-    } catch (err) {
-      const error = err as AxiosError;
-      if (error instanceof Error) {
-        if (error.response?.status === 404) {
-          setError('상품을 찾을 수 없습니다.');
-        } else {
-          setError('상품 정보를 불러오는 중 오류가 발생했습니다.');
-        }
-      }
-    } finally {
-      setLoading(false);
+  useEffect(() => {
+    if (!searchKeyword) {
+      setProducts([]); // ✅ 검색어가 없으면 리스트 초기화
+      return;
     }
-  };
 
-  return { product, error, loading, searchProduct };
+    const fetchProducts = async () => {
+      try {
+        setLoading(true);
+        const encodedKeyword = encodeURIComponent(searchKeyword);
+        const response = await api.get(`/product/find/${encodedKeyword}`);
+
+        console.log('🔍 검색 결과:', response.data.data);
+
+        setProducts(response.data.data || []); // ✅ 기존 리스트 유지 X, 새로운 데이터로 덮어쓰기
+      } catch (err) {
+        console.error('❌ 상품 검색 중 오류 발생:', err);
+        setError('상품 검색 중 오류가 발생했습니다.');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, [searchKeyword]); // ✅ 검색어 변경 시만 실행
+
+  return { products, loading, error };
 };
 
 export default useProductSearch;
