@@ -7,18 +7,12 @@ import ReviewWriteButton from '../components/review/ReviewWriteButton';
 import ReviewList from '../components/review/ReviewList';
 import MoreButton from '../components/common/MoreButton';
 import ReviewPage from '../pages/ReivewPage'; // ✅ ReviewPage 추가
-import Review from '../types/review';
-
-const mockReviews: Review[] = [
-  { id: 1, title: '좋은 상품!', rating: 5, date: '2024-03-18' },
-  { id: 2, title: '괜찮아요', rating: 4, date: '2024-03-17' },
-  { id: 3, title: '별로였어요', rating: 2, date: '2024-03-16' },
-];
+import useReviews from '../hooks/review/useReviews';
 
 const ProductDetailPage: React.FC = () => {
   const location = useLocation(); // ✅ useLocation 사용
   const productId = location.state?.productId; // ✅ state에서 productId 가져오기
-
+  const { reviews } = useReviews(productId);
   const { product, loading, error } = useProductDetail(productId);
   const [isReviewModalOpen, setIsReviewModalOpen] = useState(false); // ✅ 모달 상태 추가
 
@@ -45,7 +39,7 @@ const ProductDetailPage: React.FC = () => {
       <ReviewWriteButton onClick={() => console.log('리뷰 작성 모달 열기!')} />
 
       {/* ✅ 리뷰 목록 */}
-      <ReviewList reviews={mockReviews} />
+      <ReviewList reviews={reviews} />
 
       {/* ✅ 더보기 버튼 클릭 시 리뷰 모달 열기 */}
       <MoreButton onClick={() => setIsReviewModalOpen(true)} />

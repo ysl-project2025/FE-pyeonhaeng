@@ -1,6 +1,11 @@
 export default interface Review {
-  id: number;
-  title: string;
+  reviewId: number;
+  userId: string;
+  productId: number;
+  content: string;
   rating: number;
-  date: string;
+  like: number;
+  dislike: number;
+  createdAt: string;
+  updatedAt: string;
 }
