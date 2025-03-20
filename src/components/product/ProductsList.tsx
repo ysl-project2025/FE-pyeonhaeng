@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom'; // ✅ 추가
 import ProductCard from './ProductCard';
 import useProductList from '../../hooks/product/useProductList';
+import { PATHS } from '../../constants/constants';
 
 interface ProductPageProps {
   searchKeyword?: string;
@@ -42,7 +43,7 @@ const ProductPage: React.FC<ProductPageProps> = ({
 
   // ✅ 상품 클릭 시 해당 상품의 상세 페이지로 이동
   const handleProductClick = (id: number) => {
-    navigate(`/product/${id}`);
+    navigate(PATHS.product_detail, { state: { productId: id } }); // ✅ `state`로 id 전달
   };
 
   return (

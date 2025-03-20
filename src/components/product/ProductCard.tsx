@@ -13,7 +13,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onClick }) => {
       onClick(product.product_id);
     }
   };
-  console.log(product);
+
   return (
     <div onClick={handleClick} style={{ cursor: 'pointer' }}>
       <h3>{product.product_name}</h3>

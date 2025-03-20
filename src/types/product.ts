@@ -18,11 +18,11 @@ export interface ProductApiResponse {
 }
 
 export type Product = {
-  productId: number;
-  name: string;
-  price: number;
-  productUrl: string;
-  created_at?: string;
+  product_id: number;
+  product_image_url: string;
+  product_name: string;
+  product_price: number;
+  is_new: boolean;
 };
 
 export type ProductDetailResponse = {
