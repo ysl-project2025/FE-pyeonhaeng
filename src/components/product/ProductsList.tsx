@@ -1,77 +1,65 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { useNavigate } from 'react-router-dom'; // ✅ 추가
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import ProductCard from './ProductCard';
 import useProductList from '../../hooks/product/useProductList';
+import useSearchProducts from '../../hooks/product/useProductSearch';
+import useSortProducts from '../../hooks/product/useProdcutSort'; // ✅ 정렬 훅 추가
 import { PATHS } from '../../constants/constants';
 import { ListWrap02 } from '../../styles/common.css';
 
-interface ProductPageProps {
+interface ProductListProps {
   searchKeyword?: string;
   sortType?: string;
 }
 
-const ProductPage: React.FC<ProductPageProps> = ({
+const ProductList: React.FC<ProductListProps> = ({
   searchKeyword,
-  sortType,
+  sortType = 'default',
 }) => {
-  const [page, setPage] = useState(1);
-  const { products, loading, error } = useProductList(page);
-  const observerRef = useRef<IntersectionObserver | null>(null);
-  const navigate = useNavigate(); // ✅ 페이지 이동을 위한 useNavigate 훅 추가
-
-  useEffect(() => {
-    setPage(1);
-  }, [searchKeyword, sortType]);
-
-  const lastElementRef = useCallback(
-    (node: HTMLDivElement | null) => {
-      if (loading) return;
-      if (observerRef.current) observerRef.current.disconnect();
-
-      observerRef.current = new IntersectionObserver(
-        (entries) => {
-          if (entries[0].isIntersecting) {
-            setPage((prev) => prev + 1);
-          }
-        },
-        { threshold: 1.0 },
-      );
-
-      if (node) observerRef.current.observe(node);
-    },
-    [loading],
+  const { products: allProducts, loading, error } = useProductList(1);
+  const { products: searchResults, loading: searchLoading } = useSearchProducts(
+    searchKeyword || '',
   );
+  const { products: sortedProducts, loading: sortLoading } =
+    useSortProducts(sortType);
 
-  // ✅ 상품 클릭 시 해당 상품의 상세 페이지로 이동
+  const navigate = useNavigate();
+
+  // ✅ 검색어가 있으면 검색 결과, 없으면 정렬된 목록 사용 (기본 정렬 시 useProductList 사용)
+  const displayedProducts = searchKeyword
+    ? searchResults
+    : sortType === 'default'
+      ? allProducts
+      : sortedProducts.length > 0
+        ? sortedProducts
+        : allProducts;
+
+  // ✅ 상품 클릭 시 상세 페이지로 이동
   const handleProductClick = (id: number) => {
-    navigate(PATHS.product_detail, { state: { productId: id } }); // ✅ `state`로 id 전달
+    navigate(PATHS.product_detail, { state: { productId: id } });
   };
 
   return (
     <div className="product-page">
       <h1>상품 목록</h1>
       {error && <p>{error}</p>}
-      <ListWrap02 className="product-page__list">
-        {products.map((product, index) => {
-          if (index === products.length - 1) {
-            return (
-              <div ref={lastElementRef} key={product.product_id}>
-                <ProductCard product={product} onClick={handleProductClick} />
-              </div>
-            );
-          }
-          return (
-            <ProductCard
-              key={product.product_id}
-              product={product}
-              onClick={handleProductClick}
-            />
-          );
-        })}
-      </ListWrap02>
-      {loading && <p>상품을 불러오는 중...</p>}
+      <div className="product-page__list">
+        {displayedProducts.map((product) => (
+          <ProductCard
+            key={product.product_id}
+            product={product}
+            onClick={handleProductClick}
+          />
+        ))}
+      </div>
+      {(loading || searchLoading || sortLoading) && (
+        <p>상품을 불러오는 중...</p>
+      )}
+      {displayedProducts.length === 0 && <p>검색 결과가 없습니다.</p>}{' '}
+      {/* ✅ 검색 결과 없을 때 표시 */}
+
     </div>
   );
 };
 
-export default ProductPage;
+export default ProductList;
