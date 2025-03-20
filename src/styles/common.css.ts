@@ -198,3 +198,35 @@ export const SearchBtnOrg = styled.button`
   background-image: url(${searchIconOrg});
   ${iconBtn}
 `;
+
+/* *********** Product *********** */
+export const ListWrap01 = styled.div`
+  display: grid;
+  grid-template-columns: 1fr;
+  row-gap: 1rem;
+`;
+export const ListWrap02 = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 3rem 1rem;
+`;
+
+export const ImgWrap = styled.div`
+  border: var(--border);
+  border-radius: 2rem;
+  overflow: hidden;
+  padding: 2rem;
+`;
+
+export const ProductName = styled.h4`
+  font-size: 1.6rem;
+  margin: 1.5rem 0 1rem;
+  word-break: break-word;
+`;
+
+export const ProductPrice = styled.p`
+  font-size: 1.6rem;
+  font-weight: bold;
+  word-break: break-word;
+`;
+

@@ -3,14 +3,27 @@ import SearchBar from "../components/common/SearchBar";
 import gsEventThumb from "../assets/event/gs25_march_thumb.png";
 import { Link } from "react-router-dom";
 import Category from "../components/common/Category";
+import ProductList from '../components/product/ProductsList';
 import { Section, alc, flexStyle, jb, sectionStyle } from "../styles/common.css";
+import { useState } from "react";
 
 
 const MainPage = () => {
+  // 검색어와 정렬 상태를 여기서 관리
+  const [searchKeyword, setSearchKeyword] = useState('');
+
+  // 검색어 업데이트
+  const handleSearch = (keyword: string) => {
+    setSearchKeyword(keyword);
+  };
+
   return (
     <>
       <Section>
-        <SearchBar onSearch={(keyword: string) => console.log(`검색: ${keyword}`)}/>
+        <SearchBar
+          value={searchKeyword}
+          onSearch={handleSearch}
+        />
       </Section>
       <MainCategory>
         <Category />
@@ -23,6 +36,7 @@ const MainPage = () => {
       </MainSection>
       <MainSection>
         <MainTitle>행사 상품 한눈에 보깅</MainTitle>
+        <ProductList searchKeyword={searchKeyword} />
         
       </MainSection>
     </>

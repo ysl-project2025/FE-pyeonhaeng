@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'; // ✅ 추가
 import ProductCard from './ProductCard';
 import useProductList from '../../hooks/product/useProductList';
 import { PATHS } from '../../constants/constants';
+import { ListWrap02 } from '../../styles/common.css';
 
 interface ProductPageProps {
   searchKeyword?: string;
@@ -50,7 +51,7 @@ const ProductPage: React.FC<ProductPageProps> = ({
     <div className="product-page">
       <h1>상품 목록</h1>
       {error && <p>{error}</p>}
-      <div className="product-page__list">
+      <ListWrap02 className="product-page__list">
         {products.map((product, index) => {
           if (index === products.length - 1) {
             return (
@@ -67,7 +68,7 @@ const ProductPage: React.FC<ProductPageProps> = ({
             />
           );
         })}
-      </div>
+      </ListWrap02>
       {loading && <p>상품을 불러오는 중...</p>}
     </div>
   );

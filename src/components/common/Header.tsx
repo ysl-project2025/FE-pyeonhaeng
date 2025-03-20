@@ -1,5 +1,4 @@
-
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import styled from '@emotion/styled';
 import headerLogo from '../../assets/logos/Logo-kr-org.png'
@@ -12,6 +11,23 @@ import Category from './Category';
 
 function Header() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  // 사이드바 바깥 클릭 시 닫히도록 설정
+  useEffect(() => {
+    if (!isSidebarOpen) return;
+
+    const handleClickOutside = (event: MouseEvent) => {
+      const sidebar = document.getElementById('sidebar');
+      if (sidebar && !sidebar.contains(event.target as Node)) {
+        setIsSidebarOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isSidebarOpen]);
 
   return (
     <HeaderWrap>
@@ -32,13 +48,13 @@ function Header() {
       />
 
       {isSidebarOpen && (
-        <Sidebar>
+        <Sidebar id="sidebar">
           <CloseIcon
             src={closeIcon}
             alt="닫기"
             onClick={() => setIsSidebarOpen(false)}
           />
-          <ul>
+          <ul onClick={() => setIsSidebarOpen(false)}> {/* 내부 메뉴 클릭 시 닫힘 */}
             <li>
               <Link to="/login">Login</Link>
             </li>
@@ -46,8 +62,12 @@ function Header() {
               <Link to="/join">Join</Link>
             </li>
           </ul>
-          <SearchBar onSearch={(keyword: string) => console.log(`검색: ${keyword}`)}/>
-          <Category />
+          <SearchBar onSearch={() => setIsSidebarOpen(false)} /> {/* 검색 실행 시 닫힘 */}
+          
+          {/* ✅ Category 내부 클릭 시 닫힘 */}
+          <div onClick={() => setIsSidebarOpen(false)}>
+            <Category />
+          </div>
         </Sidebar>
       )}
     </HeaderWrap>
