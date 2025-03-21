@@ -5,7 +5,7 @@ interface MoreButtonProps {
 }
 
 const MoreButton: React.FC<MoreButtonProps> = ({ onClick }) => {
-  return <button onClick={onClick}>더보기</button>;
+  return <button style={{ width: "100%" }} onClick={onClick}>더보기</button>;
 };
 
 export default MoreButton;

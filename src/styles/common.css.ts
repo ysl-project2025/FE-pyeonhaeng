@@ -2,6 +2,8 @@ import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import searchIcon from '../assets/icons/search.png';
 import searchIconOrg from '../assets/icons/search-org.png';
+import prevIcon from '../assets/icons/left.png';
+import nextIcon from '../assets/icons/right.png';
 
 export const globalStyles = css`
   input[type='text'],
@@ -197,4 +199,103 @@ export const SearchBtn = styled.button`
 export const SearchBtnOrg = styled.button`
   background-image: url(${searchIconOrg});
   ${iconBtn}
+`;
+export const PrevBtn = styled.button`
+  padding: 0;
+  width: 2rem;
+  background-image: url(${prevIcon});
+  ${iconBtn}
+`;
+export const NextBtn = styled.button`
+  padding: 0;
+  width: 2rem;
+  background-image: url(${nextIcon});
+  ${iconBtn}
+`;
+
+
+/* *********** Product *********** */
+export const ListWrap01 = styled.div`
+  display: grid;
+  grid-template-columns: 1fr;
+  row-gap: 1rem;
+`;
+export const ListWrap02 = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 3rem 1rem;
+`;
+
+export const ImgWrap = styled.div`
+  border: var(--border);
+  border-radius: 2rem;
+  overflow: hidden;
+  padding: 2rem;
+  &.detailImg{
+    aspect-ratio: 1 / 1;
+    margin-top: 1.5rem;
+    img{
+      width: 100%;
+      height: 100%;
+      object-fit: none;
+      object-position: center;
+    }
+  }
+`;
+
+export const ProductName = styled.h4`
+  font-size: 1.6rem;
+  margin: 1.5rem 0 1rem;
+  word-break: break-word;
+  &.detailName{
+    font-size: 2rem;
+  }
+`;
+
+export const ProductPrice = styled.p`
+  font-size: 1.6rem;
+  font-weight: bold;
+  word-break: break-word;
+  &.detailPrice{
+    font-size: 2rem;
+    margin: 2rem 0;
+  }
+`;
+
+
+/* *********** Review *********** */
+export const ReviewWrap = styled.div`
+  width: 100%;
+  padding: 1.5rem 1rem;
+  border-radius: var(--radius);
+  background: var(--gray1);
+  margin: 1rem 0;
+  ul{
+    ${flexStyle}
+    ${jb}
+    ${alc}
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+    border-bottom: var(--border);
+    .date{
+      font-size: 1.4rem;
+      color: var(--black_60);
+    }
+  }
+  p{
+    font-size: 1.5rem;
+    line-height: 1.16;
+  }
+`;
+
+export const ReviewModal = styled.div`
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  width: calc(100% - 1.5rem);
+  height: 98vh;
+  border: 2px solid #000;
+  padding: 4rem 1rem 9rem 1rem;
 `;

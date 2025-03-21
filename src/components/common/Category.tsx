@@ -3,18 +3,18 @@ import { Link } from 'react-router-dom'
 function Category() {
   return (
     <>
-      <ul>
+      <ul className="categoryWrap">
         <li>
-            <Link to={"/"}>전체상품</Link>
+            <Link to={"/product_list/all"}>전체상품</Link>
         </li>
         <li>
-            <Link to={"/"}>행사상품</Link>
+            <Link to={"/product_list/event"}>행사상품</Link>
         </li>
-        <li>
+        {/* <li>
             <Link to={"/"}>레시피</Link>
-        </li>
+        </li> */}
         <li>
-            <Link to={"/"}>랭킹</Link>
+            <Link to={"/product_list/rank"}>랭킹</Link>
         </li>
       </ul>
     </>

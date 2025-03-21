@@ -1,6 +1,7 @@
 import React from 'react';
 import ReviewCard from './ReviewCard';
 import Review from '../../types/review';
+import styled from '@emotion/styled';
 
 interface ReviewListProps {
   reviews: Review[];
@@ -8,17 +9,22 @@ interface ReviewListProps {
 
 const ReviewList: React.FC<ReviewListProps> = ({ reviews }) => {
   return (
-    <div>
+    <ReviewWrap>
       {reviews.map((review) => (
         <ReviewCard
-          key={review.id}
-          title={review.title}
+          key={review.reviewId}
+          title={review.content}
           rating={review.rating}
-          date={review.date}
+          date={review.createdAt}
         />
       ))}
-    </div>
+    </ReviewWrap>
   );
 };
 
 export default ReviewList;
+
+const ReviewWrap = styled.div`
+  margin-bottom: 2rem;
+  overflow-y: scroll;
+`;
