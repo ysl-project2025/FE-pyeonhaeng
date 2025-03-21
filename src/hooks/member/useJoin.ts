@@ -8,7 +8,7 @@ const useJoin = () => {
   ) => {
     try {
       const response = await api.post(
-        '/member/join', // ✅ baseURL이 설정되어 있으므로 전체 URL 필요 없음
+        '/member/register', // ✅ baseURL이 설정되어 있으므로 전체 URL 필요 없음
         {
           user_id: userId,
           user_password: userPassword,
