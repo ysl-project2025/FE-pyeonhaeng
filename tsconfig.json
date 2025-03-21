@@ -5,5 +5,10 @@
     "types": ["@emotion/react/types/css-prop"],
     "esModuleInterop": true,
     "resolveJsonModule": true
-  }
+  },
+  "files": [],
+  "references": [
+    { "path": "./tsconfig.app.json" },
+    { "path": "./tsconfig.node.json" }
+  ]
 }
