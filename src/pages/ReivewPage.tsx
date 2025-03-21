@@ -4,12 +4,9 @@ import PageNation from '../components/common/PageNation';
 import { useLocation } from 'react-router-dom';
 import useReviews from '../hooks/review/useReviews';
 import Review from '../types/review';
-<<<<<<< HEAD
-=======
 import { ReviewModal } from '../styles/common.css';
 import styled from '@emotion/styled';
 import closeIcon from '../assets/icons/close.png';
->>>>>>> develop
 
 interface ReviewPageProps {
   reviews: Review[];
@@ -61,11 +58,7 @@ const ReviewPage: React.FC<ReviewPageProps> = ({ onClose }) => {
           onPageChange={setCurrentPage} // ✅ 현재 페이지 변경
         />
       )}
-<<<<<<< HEAD
-    </div>
-=======
     </ReviewModal>
->>>>>>> develop
   );
 };
 
