@@ -295,6 +295,7 @@ export const ReviewModal = styled.div`
   transform: translate(-50%, -50%);
   background: #fff;
   width: calc(100% - 1.5rem);
-  border: var(--border);
-  padding: 4rem 1rem 2rem 1rem;
+  height: 98vh;
+  border: 2px solid #000;
+  padding: 4rem 1rem 9rem 1rem;
 `;

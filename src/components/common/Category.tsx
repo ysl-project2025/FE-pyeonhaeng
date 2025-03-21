@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 function Category() {
   return (
     <>
-      <ul>
+      <ul className="categoryWrap">
         <li>
             <Link to={"/product_list/all"}>전체상품</Link>
         </li>

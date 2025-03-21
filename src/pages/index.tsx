@@ -3,9 +3,9 @@ import SearchBar from "../components/common/SearchBar";
 import gsEventThumb from "../assets/event/gs25_march_thumb.png";
 import { Link } from "react-router-dom";
 import Category from "../components/common/Category";
-import ProductList from '../components/product/ProductsList';
 import { Section, alc, flexStyle, jb, sectionStyle } from "../styles/common.css";
 import { useState } from "react";
+import ProductListForIndex from "../components/product/ProductListForIndex";
 
 
 const MainPage = () => {
@@ -36,7 +36,7 @@ const MainPage = () => {
       </MainSection>
       <MainSection>
         <MainTitle>행사 상품 한눈에 보깅</MainTitle>
-        <ProductList searchKeyword={searchKeyword} />
+        <ProductListForIndex maxProducts={4} />
         
       </MainSection>
     </>
