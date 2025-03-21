@@ -4,7 +4,7 @@ import { Section, SectionTitle } from '../styles/common.css'
 function AllProduct() {
   return (
     <Section>
-        <SectionTitle>전체상품</SectionTitle>
+      <SectionTitle>전체상품</SectionTitle>
       <ProductList />
     </Section>
   )
