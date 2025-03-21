@@ -2,11 +2,8 @@
   "compilerOptions": {
     "jsx": "react-jsx",
     "jsxImportSource": "@emotion/react",
-    "types": ["@emotion/react/types/css-prop"] 
-  },
-  "files": [],
-  "references": [
-    { "path": "./tsconfig.app.json" },
-    { "path": "./tsconfig.node.json" }
-  ]
+    "types": ["@emotion/react/types/css-prop"],
+    "esModuleInterop": true,
+    "resolveJsonModule": true
+  }
 }

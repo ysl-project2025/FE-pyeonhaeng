@@ -4,6 +4,12 @@ import PageNation from '../components/common/PageNation';
 import { useLocation } from 'react-router-dom';
 import useReviews from '../hooks/review/useReviews';
 import Review from '../types/review';
+<<<<<<< HEAD
+=======
+import { ReviewModal } from '../styles/common.css';
+import styled from '@emotion/styled';
+import closeIcon from '../assets/icons/close.png';
+>>>>>>> develop
 
 interface ReviewPageProps {
   reviews: Review[];
@@ -30,11 +36,17 @@ const ReviewPage: React.FC<ReviewPageProps> = ({ onClose }) => {
   );
 
   return (
-    <div className="review-modal">
+    <ReviewModal className="review-modal">
       {/* 모달 닫기 버튼 */}
-      <button className="close-button" onClick={onClose}>
+      {/* <button className="close-button" onClick={onClose}>
         닫기
-      </button>
+      </button> */}
+      <CloseIcon
+        src={closeIcon}
+        alt="닫기"
+        className="close-button"
+        onClick={onClose}
+      />
 
       {/* 리뷰 리스트 */}
       <ReviewList reviews={visibleReviews} />
@@ -49,8 +61,20 @@ const ReviewPage: React.FC<ReviewPageProps> = ({ onClose }) => {
           onPageChange={setCurrentPage} // ✅ 현재 페이지 변경
         />
       )}
+<<<<<<< HEAD
     </div>
+=======
+    </ReviewModal>
+>>>>>>> develop
   );
 };
 
 export default ReviewPage;
+
+const CloseIcon = styled.img`
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 3rem;
+  height: 3rem;
+`;

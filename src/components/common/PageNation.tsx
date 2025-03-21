@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { NextBtn, PrevBtn } from '../../styles/common.css';
 
 interface PageNationProps {
   totalItems: number;
@@ -30,7 +31,7 @@ export default function PageNation({
   return (
     <div>
       <ul
-        style={{ display: 'flex', listStyle: 'none', gap: '10px', padding: 0 }}
+        style={{ display: 'flex', justifyContent: 'center', listStyle: 'none', gap: '10px', padding: 0 }}
       >
         {/* 이전 버튼 */}
         <li
@@ -39,12 +40,12 @@ export default function PageNation({
             opacity: noPrev ? 0.5 : 1,
           }}
         >
-          <button
+          <PrevBtn
             disabled={noPrev}
             onClick={() => !noPrev && onPageChange(start - 1)}
           >
             이전
-          </button>
+          </PrevBtn>
         </li>
 
         {/* 페이지 번호 */}
@@ -71,12 +72,12 @@ export default function PageNation({
             opacity: noNext ? 0.5 : 1,
           }}
         >
-          <button
+          <NextBtn
             disabled={noNext}
             onClick={() => !noNext && onPageChange(start + pageCount)}
           >
             다음
-          </button>
+          </NextBtn>
         </li>
       </ul>
     </div>

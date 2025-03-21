@@ -5,6 +5,7 @@ import useProductList from '../../hooks/product/useProductList';
 import useSearchProducts from '../../hooks/product/useProductSearch';
 import useSortProducts from '../../hooks/product/useProdcutSort'; // ✅ 정렬 훅 추가
 import { PATHS } from '../../constants/constants';
+import { ListWrap02 } from '../../styles/common.css';
 
 interface ProductListProps {
   searchKeyword?: string;
@@ -40,9 +41,8 @@ const ProductList: React.FC<ProductListProps> = ({
 
   return (
     <div className="product-page">
-      <h1>상품 목록</h1>
       {error && <p>{error}</p>}
-      <div className="product-page__list">
+      <ListWrap02 className="product-page__list">
         {displayedProducts.map((product) => (
           <ProductCard
             key={product.product_id}
@@ -50,7 +50,7 @@ const ProductList: React.FC<ProductListProps> = ({
             onClick={handleProductClick}
           />
         ))}
-      </div>
+      </ListWrap02>
       {(loading || searchLoading || sortLoading) && (
         <p>상품을 불러오는 중...</p>
       )}
