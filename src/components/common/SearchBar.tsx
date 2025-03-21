@@ -1,6 +1,8 @@
 import styled from '@emotion/styled';
 import React, { useState, useEffect, useRef } from 'react';
 import { SearchBtnOrg, alc, flexStyle, jb } from '../../styles/common.css';
+import { useNavigate } from 'react-router-dom';
+import { PATHS } from '../../constants/constants';
 
 interface SearchBarProps {
   value?: string;
@@ -10,6 +12,7 @@ interface SearchBarProps {
 const SearchBar: React.FC<SearchBarProps> = ({ value = '', onSearch }) => {
   const [inputValue, setInputValue] = useState(value); // ✅ 검색어 상태
   const inputRef = useRef<HTMLInputElement>(null); // ✅ 입력 값을 추적하는 ref
+  const navigate = useNavigate();
 
   // ✅ 부모 `value`가 변경될 때만 업데이트 (입력 중 초기화 방지)
   useEffect(() => {
@@ -35,8 +38,11 @@ const SearchBar: React.FC<SearchBarProps> = ({ value = '', onSearch }) => {
   // ✅ 검색 버튼 클릭 시 실행
   const handleSearch = () => {
     const searchValue = inputRef.current ? inputRef.current.value : '';
+    if (searchValue.trim() === '') return;
     setInputValue(searchValue); // ✅ 상태 업데이트
     onSearch(searchValue); // ✅ 부모 상태 업데이트
+
+    navigate(`${PATHS.search}?query=${encodeURIComponent(searchValue)}`);
   };
 
   const SearchWrap = styled.div`
