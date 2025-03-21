@@ -6,5 +6,6 @@ export const PATHS = {
   product_list_event: '/product_list/event',
   product_list_rank: '/product_list/rank',
   product_detail: '/product_detail',
+  search: '/product/search',
   main: '/',
 };

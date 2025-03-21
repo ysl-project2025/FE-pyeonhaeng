@@ -12,6 +12,7 @@ import Layout from './components/common/Layout';
 import AllProduct from './pages/AllProduct';
 import EventProduct from './pages/EventProduct';
 import RankProduct from './pages/RankProduct';
+import SearchPage from './pages/SearchPage';
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
         <Routes>
         <Route element={<Layout />}>
           <Route path={PATHS.main} element={<MainPage />} />
+          <Route path={PATHS.search} element={<SearchPage />} />
           <Route path={PATHS.product_detail} element={<ProductDetailPage />} />
           <Route path={PATHS.product_list_all} element={<AllProduct />} />
           <Route path={PATHS.product_list_event} element={<EventProduct />} />
